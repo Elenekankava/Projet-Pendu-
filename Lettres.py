@@ -64,22 +64,24 @@ bouton_s = tk.Button(racine,text='S',command=affichage)
 bouton_s.grid(column=5, row=1)
 
 bouton_t = tk.Button(racine,text='T',command=affichage)
-bouton_t.grid(colum=6, row=1)
+bouton_t.grid(column=6, row=1)
 
 bouton_u = tk.Button(racine,text='U',command=affichage)
-bouton_u.grid(colum=7, row=1)
+bouton_u.grid(column=7, row=1)
 
 bouton_v = tk.Button(racine,text='V',command=affichage)
-bouton_v.grid(colum=8, row=1)
+bouton_v.grid(column=8, row=1)
 
 bouton_w= tk.Button(racine,text='W',command=affichage)
-bouton_w.grid(colum=9, row=1)
+bouton_w.grid(column=9, row=1)
 
 bouton_x = tk.Button(racine,text='X',command=affichage)
-bouton_x.grid(colum=10, row=1)
+bouton_x.grid(column=10, row=1)
 
 bouton_y = tk.Button(racine,text='Y',command=affichage)
-bouton_y.grid(colum=11, row=1)
+bouton_y.grid(column=11, row=1)
 
 bouton_z = tk.Button(racine,text='Z',command=affichage)
-bouton_z.grid(colum=12, row=1)
+bouton_z.grid(column=12, row=1)
+
+racine.mainloop()
