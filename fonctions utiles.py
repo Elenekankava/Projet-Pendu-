@@ -15,6 +15,8 @@ def mot_en_asterix(word):
         dico[str(word_l[i])]='*'
     return dico
 print(mot_en_asterix("manon"))
-dico = mot_en_asterix("manon")
+dico = mot_en_asterix("manon")  #pas ouf l'idé
+
+
 
 
