@@ -1,0 +1,15 @@
+import tkinter as tk
+
+racine= tk.Tk()
+canvas= tk.Canvas(racine)
+
+x0= 100
+y= 100
+x1= 400
+ligne1_etape1= canvas.create_line(x0, y, x1, y)
+ligne2_etape2=canvas.create_line(x0, y, x0, y- 400)
+ligne3_etape1=canvas.create_line(x0-50, y, x0 + 100)
+
+canvas.grid(column= 1, row= 3, columnspan= 11, rowspan= 10, width= 500, height= 500, padx=10, pady=10)
+
+racine.mainloop()
