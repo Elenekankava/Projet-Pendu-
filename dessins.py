@@ -24,10 +24,12 @@ def dessin_etape1():
     ligne4_etape1= canvas.create_line(x1, y, x1, y +30)
     ligne_diagonale_etape1= canvas.create_line(x0 + 20, y, x0, y+ 20)
     ligne_horizontale_etape1= canvas.create_line(x0- 10, y+ 300, x1-150, y+300)
+    return
 
 def dessin_etape2():
     dessin_etape1()
     cercle= canvas.create_oval(x1 - 25, y1+ 25, x1 + 25, y1- 25)
+    return
     
     
 
