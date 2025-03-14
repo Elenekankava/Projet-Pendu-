@@ -30,7 +30,17 @@ def dessin_etape2():
     dessin_etape1()
     cercle= canvas.create_oval(x1 - 25, y1+ 25, x1 + 25, y1- 25)
     return
+
+def dessine_etape3():
     
+    
+
+def dessin_etape8():
+    cercle=canvas.create_oval((250-75, 250-75),(250+75, 250+75), "black")
+    cercle=canvas.create_oval((250-70, 250-70),(250+70, 250+70), "pink")
+    yeux1=canvas.create_oval((220-15, 230-15),(220+15, 230+15), fill="black")
+    yeux2=canvas.create_oval((280-15, 230-15),(280+15, 230+15) fill="black")
+    bouche=canvas.create_line((220,280),(270,280), fill="black", width=5)
     
 
 
