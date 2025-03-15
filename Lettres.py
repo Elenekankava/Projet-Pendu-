@@ -3,8 +3,15 @@ racine=tk.Tk()
 
 def affichage(bouton):
     """affiche la lettre sur le bouton"""
-    global lettre
     bouton.config(bg='black',fg='black')
+    global lettre
+    lettre=str(bouton)
+    if len(lettre)==9:
+        numero=(lettre[8])
+    elif len(lettre)==10:
+        numero=(str(lettre[8])+str(lettre[9]))
+    lettre = chr(int(numero) + 64)
+    return lettre
     
 
 bouton_a = tk.Button(racine,text='A',command=lambda : affichage(bouton_a), activebackground='black', foreground='blue')
