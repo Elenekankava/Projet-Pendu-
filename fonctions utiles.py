@@ -34,12 +34,13 @@ label1.grid(column=0, row=0)
 listbox.grid(row=1, column=0)
 button.grid(row=2, column=0)
 racine.destroy
-racine=tk.Tk()
+racine.mainloop()
+racine1=tk.Tk()
 
 
 
 
-texte=tk.Label(racine, text='')
+texte=tk.Label(racine1, text='')
 
 def asterix (word) :
     word_l=list(word)
@@ -47,10 +48,10 @@ def asterix (word) :
     affichage=' *  '*nombre_asterix
     texte.config(text=str(affichage), fg='black', font=30)
     
-asterix('manon')
+asterix(str(mot))
 
 texte.grid(column=0, row= 10, columnspan=13)
-racine.mainloop()
+racine1.mainloop()
 #print(mot_en_asterix("manon"))
 #dico = mot_en_asterix("manon")  #pas ouf l'idé
 
