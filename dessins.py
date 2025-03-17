@@ -32,7 +32,6 @@ def dessin_etape2():
     return
 
 def dessin_etape3():
-    dessin_etape1
     dessin_etape2
     corps=canvas.create_line((x1,y1),(x1,y1+100))
 
@@ -44,15 +43,16 @@ def dessine_etape4():
     
 
 def dessin_etape8():
-    cercle=canvas.create_oval((250-75, 250-75),(250+75, 250+75), "black")
-    cercle=canvas.create_oval((250-70, 250-70),(250+70, 250+70), "pink")
+    canvas.delete("all")
+    cercle=canvas.create_oval((250-75, 250-75),(250+75, 250+75), fill="black")
+    cercle=canvas.create_oval((250-70, 250-70),(250+70, 250+70), fill="pink")
     yeux1=canvas.create_oval((220-15, 230-15),(220+15, 230+15), fill="black")
     yeux2=canvas.create_oval((280-15, 230-15),(280+15, 230+15), fill="black")
     bouche=canvas.create_line((220,280),(270,280), fill="black", width=4)
     
 
 
-    
+dessin_etape8()  
 canvas.grid(column= 1, row= 3, columnspan= 11, rowspan= 10)
 
 racine.mainloop()
