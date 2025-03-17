@@ -16,13 +16,7 @@ def choix_mot(dico):
     mot = rd.choice(dico)
     return mot 
 
-def mot_en_asterix(word):
-    dico={}
-    word_l=list(word)
-    print(word_l)
-    for i in range (len(word_l)) :
-        dico[str(word_l[i])]='*'
-    return dico
+
 
 def asterix (word) :
     word=choix_mot(Listemots)
