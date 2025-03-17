@@ -1,5 +1,6 @@
 import random as rd
 import tkinter as tk 
+
 Listemots= {"3": ["coq", "ski", "jus", "nul","gaz", "axe", "rat", "feu", "mur", "sel", "bot", "tas", "lot", "jeu", "lac", "bol", "nid", "par", "riz", "mot", "vue", "but", "ton", "fin", "mer", "air", "sol", "don", "bar", "vue", "pis", "roc", "vie", "fer", "cap", "ron"],
             "4": ["beau", "joli", "thym", "yogi", "pion", "chat", "loup", "noir", "vert", "bleu", "port", "tour", "mont", "lait", "pain", "robe", "bain", "vent", "camp", "sole", "gris", "bois", "ciel", "dent", "faux", "rose", "pont", "doux", "cord", "film", "main", "pois", "vide", "clou", "fort"],
             "5" : ["bruit", "cycle", "livre", "pomme", "tenue", "rugby", "table", "plage", "valse", "ferme", "ombre", "sable", "chute", "glace", "fleur", "porte", "verre", "moulin", "colis", "grille", "dalle", "piano", "tronc", "danse", "carte", "farce", "goule", "louve", "plain", "coeur", "train", "flute", "morce", "signe", "tigre", "phase"],
@@ -13,11 +14,12 @@ from functools import partial
 
 def show_selection(choices, listbox):
     choices = choices.get()
-    global text
     text=""
     for index in listbox.curselection():
         text += choices[index] + " "
-    print(text)
+    global mot
+    mot = rd.choice(Listemots[(text)])
+    print(mot)
     return text
 
 
@@ -34,18 +36,12 @@ button.grid(row=2, column=0)
 racine.destroy
 racine=tk.Tk()
 
-def choix_mot(dico):
-    global mot
-    n = text
-    mot = rd.choice(dico[text])
-    print(mot)
-    return mot 
-button=tk.Button(text='lancer la fonction',command=choix_mot)
+
+
 
 texte=tk.Label(racine, text='')
 
 def asterix (word) :
-    word=choix_mot(Listemots)
     word_l=list(word)
     nombre_asterix=len(word_l)
     affichage=' *  '*nombre_asterix
