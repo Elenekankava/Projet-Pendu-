@@ -28,19 +28,26 @@ def dessin_etape1():
 
 def dessin_etape2():
     dessin_etape1()
-    cercle= canvas.create_oval(x1 - 25, y1+ 25, x1 + 25, y1- 25)
+    cercle= canvas.create_oval((x1 - 25, y1+ 25), (x1 + 25, y1- 25), width=3, fill="pink")
     return
 
 def dessin_etape3():
     dessin_etape2
-    corps=canvas.create_line((x1,y1),(x1,y1+100))
+    corps=canvas.create_line((x1,y1),(x1,y1+25+60), width=3)
+    return
 
-def dessine_etape4():
-    dessin_etape1
-    dessin_etape2
-    dessin_etape3  
+def dessin_etape4():
+    dessin_etape3
+    maingauche=canvas.create_line((x1, y1+25+10), (x1-15,y1-5), width=3)
+    return
     
+def dessin_etape5():
+    dessin_etape4()
+    maindroite=canvas.create_line((x1,y1+25+10), (x1+15, y1-5), width=3)
     
+def dessin_etape6():
+    dessin_etape5
+    piedgauche=canvas.create_line((x1-10, y1+25+60+15), (x1+10, y1+25+60+15), width=3)
 
 def dessin_etape8():
     canvas.delete("all")
@@ -49,10 +56,8 @@ def dessin_etape8():
     yeux1=canvas.create_oval((220-15, 230-15),(220+15, 230+15), fill="black")
     yeux2=canvas.create_oval((280-15, 230-15),(280+15, 230+15), fill="black")
     bouche=canvas.create_line((220,280),(270,280), fill="black", width=4)
-    
+     
 
-
-dessin_etape8()  
 canvas.grid(column= 1, row= 3, columnspan= 11, rowspan= 10)
 
 racine.mainloop()

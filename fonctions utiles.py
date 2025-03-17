@@ -39,5 +39,3 @@ racine.mainloop()
 #dico = mot_en_asterix("manon")  #pas ouf l'idé
 
 
-
-
