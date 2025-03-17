@@ -11,7 +11,7 @@ import tkinter as tk
 import random as rd
 
 def lettres3():
-    mot=rd.choice(Listemots[3])
+    mot=rd.choice(Listemots['3'])
     return mot
 def lettres4():
     mot=rd.choice(Listemots[3])
@@ -29,7 +29,7 @@ def lettres8():
     mot=rd.choice(Listemots[3])
     return mot
 
-
+lettres3()
 racine=tk.Tk()
 
 choisir_longueur=tk.Label(racine, text="cliquez sur la longueur du mot")
