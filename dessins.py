@@ -33,26 +33,26 @@ def dessin_etape2():
 
 def dessin_etape3():
     dessin_etape2()
-    corps=canvas.create_line((x1,y1),(x1,y1+25+60), width=3)
+    corps=canvas.create_line((x1,y1+25),(x1,y1+25+60), width=3)
     return
 
 def dessin_etape4():
     dessin_etape3()
-    maingauche=canvas.create_line((x1, y1+25+10), (x1-30,y1-5), width=3)
+    maingauche=canvas.create_line((x1, y1+25+10), (x1-40,y1-5), width=3)
     return
     
 def dessin_etape5():
     dessin_etape4()
-    maindroite=canvas.create_line((x1,y1+25+10), (x1+30, y1-5), width=3)
+    maindroite=canvas.create_line((x1,y1+25+10), (x1+40, y1-5), width=3)
     
 def dessin_etape6():
     dessin_etape5()
-    piedgauche=canvas.create_line((x1, y1+25+60+15), (x1-30, y1+25+60+15), width=3)
+    piedgauche=canvas.create_line((x1, y1+25+60+15), (x1-40, y1+25+60+15), width=3)
     return
 
 def dessin_etape7():
     dessin_etape6
-    pieddroite=canvas.create_line((x1, y1+25+60+15), (x1+30, y+25+60+16), width=3)
+    pieddroite=canvas.create_line((x1, y1+25+60+15), (x1+40, y+25+60+16), width=3)
     return
 
 def dessin_etape8():
