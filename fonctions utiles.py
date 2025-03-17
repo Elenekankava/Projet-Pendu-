@@ -8,12 +8,35 @@ Listemots= {"3": ["coq", "ski", "jus", "nul","gaz", "axe", "rat", "feu", "mur", 
             "8" : ["javelot", "losange", "spirale", "aquarium", "brocante", "diapason","objectif", "logiciel", "pastiche", "scorpion", "tabouret", "triangle", "utopique", "cascade", "boussole", "tornades", "panthère", "mystique", "tournage", "lumières", "fracture", "barbecue", "grenoble", "volcanes", "clarté", "chaleurs", "bourgeon", "printemps", "moulinet", "sauvages", "parfume", "fenêtres", "riviere", "mosaïque", "frissons", "tonnerre", "brouhaha", "marathon", "symphony", "cloporte", "moissons", "cascadeur", "periscope"]
 }
 
+import tkinter as tk
+from functools import partial
 
-racine = tk.Tk()
+def show_selection(choices, listbox):
+    choices = choices.get()
+    global text
+    text=""
+    for index in listbox.curselection():
+        text += choices[index] + " "
+    print(text)
+    return text
+
+racine= tk.Tk()
+label1=tk.Label(racine,text='nombre de lettres que vous voulez dans le mot', font='20')
+choices = tk.Variable(racine, ('3', '4', '5','6'))
+listbox = tk.Listbox(racine, listvariable=choices, selectmode="multiple")
+listbox.insert('end', '7', '8')
+button = tk.Button(racine, text='Ok', command=partial(show_selection, choices, listbox))
+
+label1.grid(column=0, row=0)
+listbox.grid(row=1, column=0)
+button.grid(row=2, column=0)
+
+
 texte=tk.Label(racine, text='')
 def choix_mot(dico):
     global mot
-    mot = rd.choice(dico)
+    n = text
+    mot = rd.choice(dico[text])
     return mot 
 
 
