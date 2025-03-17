@@ -7,41 +7,40 @@ Listemots= {"3": ["coq", "ski", "jus", "nul","gaz", "axe", "rat", "feu", "mur", 
             "8" : ["javelot", "losange", "spirale", "aquarium", "brocante", "diapason","objectif", "logiciel", "pastiche", "scorpion", "tabouret", "triangle", "utopique", "cascade", "boussole", "tornades", "panthère", "mystique", "tournage", "lumières", "fracture", "barbecue", "grenoble", "volcanes", "clarté", "chaleurs", "bourgeon", "printemps", "moulinet", "sauvages", "parfume", "fenêtres", "riviere", "mosaïque", "frissons", "tonnerre", "brouhaha", "marathon", "symphony", "cloporte", "moissons", "cascadeur", "periscope"]
 }
 
-
 import tkinter as tk
 import random as rd
 
 def lettres3():
-    mot=rd.choise(Listemots[3])
+    mot=rd.choice(Listemots[3])
     return mot
 def lettres4():
-    mot=rd.choise(Listemots[3])
+    mot=rd.choice(Listemots[3])
     return mot
 def lettres5():
-    mot=rd.choise(Listemots[3])
+    mot=rd.choice(Listemots[3])
     return mot
 def lettres6():
-    mot=rd.choise(Listemots[3])
+    mot=rd.choice(Listemots[3])
     return mot
 def lettres7():
-    mot=rd.choise(Listemots[3])
+    mot=rd.choice(Listemots[3])
     return mot
 def lettres8():
-    mot=rd.choise(Listemots[3])
+    mot=rd.choice(Listemots[3])
     return mot
 
 
 racine=tk.Tk()
 
-choisir_longueur=tk.Label(racine, "cliquez sur la longueur du mot")
+choisir_longueur=tk.Label(racine, text="cliquez sur la longueur du mot")
 choisir_longueur.grid(column=0,row=1, padx=10, pady=10)
 
-bouton1=tk.Button(racine, "3 lettres", command=lettres3)
-bouton2=tk.Button(racine, "4 lettres", command=lettres4)
-bouton3=tk.Button(racine, "5 lettres", command=lettres5)
-bouton4=tk.Button(racine, "6 lettres", command=lettres6)
-bouton5=tk.Button(racine, "7 lettres", command=lettres7)
-bouton6=tk.Button(racine, "8 lettres", command=lettres8)
+bouton1=tk.Button(racine, text="3 lettres", command=lettres3)
+bouton2=tk.Button(racine, text="4 lettres", command=lettres4)
+bouton3=tk.Button(racine, text="5 lettres", command=lettres5)
+bouton4=tk.Button(racine, text="6 lettres", command=lettres6)
+bouton5=tk.Button(racine, text="7 lettres", command=lettres7)
+bouton6=tk.Button(racine, text="8 lettres", command=lettres8)
 
 bouton1.grid()
 bouton2.grid()

@@ -28,7 +28,7 @@ def asterix (word) :
     word=choix_mot(Listemots)
     word_l=list(word)
     nombre_asterix=len(word_l)
-    affichage=' _  '*nombre_asterix
+    affichage=' *  '*nombre_asterix
     texte.config(text=str(affichage), fg='black', font=30)
     
 asterix('manon')

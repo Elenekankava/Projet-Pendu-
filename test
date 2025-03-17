@@ -1,22 +1,22 @@
-from tkinter import *
+import tkinter as tk
 from functools import partial
 
-def show_selection(label, choices, listbox):
+def show_selection(choices, listbox):
     choices = choices.get()
-    text = ""
+    text=""
     for index in listbox.curselection():
         text += choices[index] + " "
+    print(text)
+    return text
 
-    label.config(text=text)
+racine= tk.Tk()
+label1=tk.Label(racine,text='nombre de lettres que vous voulez dans le mot', font='20')
+choices = tk.Variable(racine, ('3', '4', '5','6'))
+listbox = tk.Listbox(racine, listvariable=choices, selectmode="multiple")
+listbox.insert('end', '7', '8')
+button = tk.Button(racine, text='Ok', command=partial(show_selection, choices, listbox))
 
-root = Tk()
-choices = Variable(root, ('P2R-866', 'PJ2-445', 'P3X-974'))
-listbox = Listbox(root, listvariable=choices, selectmode="multiple")
-listbox.insert('end', 'P3X-972', 'P3X-888')
-label = Label(root, text='')
-button = Button(root, text='Ok', command=partial(show_selection, label, choices, listbox))
-
-listbox.grid(row=0, column=0)
-button.grid(row=1, column=0)
-label.grid(row=2, column=0)
-root.mainloop()
+label1.grid(column=0, row=0)
+listbox.grid(row=1, column=0)
+button.grid(row=2, column=0)
+racine.mainloop()
