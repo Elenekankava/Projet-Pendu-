@@ -20,6 +20,7 @@ def show_selection(choices, listbox):
     print(text)
     return text
 
+
 racine= tk.Tk()
 label1=tk.Label(racine,text='nombre de lettres que vous voulez dans le mot', font='20')
 choices = tk.Variable(racine, ('3', '4', '5','6'))
@@ -30,16 +31,18 @@ button = tk.Button(racine, text='Ok', command=partial(show_selection, choices, l
 label1.grid(column=0, row=0)
 listbox.grid(row=1, column=0)
 button.grid(row=2, column=0)
+racine.destroy
+racine=tk.Tk()
 
-
-texte=tk.Label(racine, text='')
 def choix_mot(dico):
     global mot
     n = text
     mot = rd.choice(dico[text])
+    print(mot)
     return mot 
+button=tk.Button(text='lancer la fonction',command=choix_mot)
 
-
+texte=tk.Label(racine, text='')
 
 def asterix (word) :
     word=choix_mot(Listemots)
