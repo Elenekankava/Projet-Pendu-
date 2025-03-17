@@ -26,7 +26,7 @@ def show_selection(choices, listbox):
 racine= tk.Tk()
 label1=tk.Label(racine,text='nombre de lettres que vous voulez dans le mot', font='20')
 choices = tk.Variable(racine, ('3', '4', '5','6'))
-listbox = tk.Listbox(racine, listvariable=choices, selectmode="multiple")
+listbox = tk.Listbox(racine, listvariable=choices, selectmode="simple")
 listbox.insert('end', '7', '8')
 button = tk.Button(racine, text='Ok', command=partial(show_selection, choices, listbox))
 
