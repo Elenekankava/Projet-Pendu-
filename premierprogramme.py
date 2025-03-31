@@ -7,13 +7,12 @@ def show_instructions():
 racine= tk.Tk()
 racine.title("jeu du pendu")
 
+t=False
 
 boutoninstructions=tk.Button (racine, text="Cliquez sur ce bouton afin de lire les instructions du jeu", font=("Helvetica", "20"), bg="pink", fg="black")
 boutoninstructions.grid(column=0, row=1, padx=10, pady=10)
 
 def demarrer():
-    texte.destroy()
-    boutoninstructions.destroy()
     global t
     t=True
 
@@ -30,6 +29,7 @@ boutondebutjeu.grid(column=0, row=2, padx=10, pady=10)
 
 if t==True:
     boutondebutjeu.destroy()
-
+    texte.destroy()
+    boutoninstructions.destroy()
 
 racine.mainloop()
