@@ -25,7 +25,7 @@ def premiere_page():
 
 boutoninstructions=tk.Button (racine, text="Cliquez sur ce bouton afin de lire les instructions du jeu", font=("Helvetica", "20"), bg="pink", fg="black")
 boutoninstructions.grid(column=0, row=1, padx=10, pady=10)
-boutondebutjeu= tk.Button(racine, text="Cliquez sur ce bouton afin de commencer a jouer", font=("Helvetica", "20"), bg="pink", fg="black", command=demarrer())
+boutondebutjeu= tk.Button(racine, text="Cliquez sur ce bouton afin de commencer a jouer", font=("Helvetica", "20"), bg="pink", fg="black")
 boutondebutjeu.grid(column=0, row=2, padx=10, pady=10)
 
 premiere_page()
