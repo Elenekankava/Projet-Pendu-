@@ -12,6 +12,7 @@ def clear_window():
 def page_intruction():
     clear_window
     textes=tk.Label(racine, text='instructions', font='30', fg='black')
+    textes.grid()
 
 def deuxieme_page():
     clear_window
