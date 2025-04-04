@@ -45,10 +45,44 @@ texte=tk.Label(racine1, text='')
 def asterix (word) :
     word_l=list(word)
     nombre_asterix=len(word_l)
+    global affichage
     affichage=' *  '*nombre_asterix
     texte.config(text=str(affichage), fg='black', font=30)
     
 asterix(str(mot))
+
+def verifie_mot(bouton):
+    lettre= input("Veuillez saisir une lettre")
+    cpt= 0
+    mot= list(mot)
+    while cpt < 8:
+    for i in range (len(mot)):
+        if lettre == mot[i]:
+            affichage[i]= lettre
+        else:
+            cpt += 1
+            if cpt==1:
+                dessin_etape2()
+            elif cpt== 2:
+                dessin_etape3()
+            elif cpt== 3:
+                dessin_etape4()
+            elif cpt== 4:
+                dessin_etape5()
+            elif cpt== 5:
+                dessin_etape6()
+            elif cpt== 6:
+                dessin_etape7()
+            elif cpt== 7:
+                dessin_etape8()
+        
+                
+            
+    
+    
+    
+            
+    
 
 texte.grid(column=0, row= 10, columnspan=13)
 racine1.mainloop()
