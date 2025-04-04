@@ -78,6 +78,14 @@ def clear_window():
     for widget in racine.winfo_children():
         widget.destroy()
 
+def page_aide() :
+    clear_window()
+    textes=tk.Label(racine, text='instructions', font='30', fg='black')
+    textes.grid()
+    bouton_retour=tk.Button(text='retour', command=troisieme_fenetre)
+    bouton_retour.grid()
+    
+
 def troisieme_fenetre ():
     clear_window()
     global canvas
@@ -86,6 +94,10 @@ def troisieme_fenetre ():
     global texte
     texte=tk.Label(racine, text='')
     texte.grid()
+    bouton_aide=tk.Button(text='aide', command=page_aide)
+    bouton_aide.grid()
+    bouton_quitter=tk.Button(text='quitter la partie', command=premiere_page)
+    bouton_quitter.grid()
     asterix(mot)
     dessin_etape1()
 
