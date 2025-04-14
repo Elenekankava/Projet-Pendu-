@@ -14,7 +14,7 @@ Listemots= {"3": ["coq", "ski", "jus", "nul","gaz", "axe", "rat", "feu", "mur", 
             "8" : ["javelot", "losange", "spirale", "aquarium", "brocante", "diapason","objectif", "logiciel", "pastiche", "scorpion", "tabouret", "triangle", "utopique", "cascade", "boussole", "tornades", "panthère", "mystique", "tournage", "lumières", "fracture", "barbecue", "grenoble", "volcanes", "clarté", "chaleurs", "bourgeon", "printemps", "moulinet", "sauvages", "parfume", "fenêtres", "riviere", "mosaïque", "frissons", "tonnerre", "brouhaha", "marathon", "symphony", "cloporte", "moissons", "cascadeur", "periscope"]
 }
 
-
+cpt = 0
 def affichage(bouton)->None:
     """affiche la lettre sur le bouton"""
     bouton.config(bg='black',fg='black')
@@ -25,15 +25,14 @@ def affichage(bouton)->None:
     elif len(lettre)==10:
         numero=(str(lettre[8])+str(lettre[9]))
     lettre = chr(int(numero) + 61)
-    cpt= 0
     mot= list(mot)
+    global cpt
     lettre= str(lettre)
     lettre_deja_dite=[]
+    if lettre in lettre_deja_dite:
+        print("Vous avez déjà saisi cette lettre! Veuillez en saisir une différente!")
     lettre_deja_dite.append(lettre)
-    while cpt < 8:
         for i in range (len(mot)):
-            if lettre in lettre_deja_dite:
-                print("Vous avez déjà dit cette lettre! Veuillez en entrer une autre ")
             if lettre == mot[i]:
                 affichage[i]= lettre
             else:
@@ -52,6 +51,8 @@ def affichage(bouton)->None:
                     dessin_etape7()
                 elif cpt== 7:
                     dessin_etape8()
+                elif cpt>= 8:
+                    fenetre_fin()
 
 
 x0= 100
