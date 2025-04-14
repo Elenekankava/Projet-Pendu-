@@ -229,11 +229,11 @@ def premiere_page():
     canvas=tk.Canvas(racine, width=500, height=500)
     canvas.grid()
     texte=tk.Label (racine, text="Bienvenue au Jeu du pendu!", font=("Helvetica", "40"),  fg="blue")
-    texte.place(x=400, y=100)
+    texte.place(x=475, y=100)
     boutoninstructions=tk.Button (racine, text="Cliquez sur ce bouton afin de lire les instructions du jeu", font=("Helvetica", "20"), bg="pink", fg="black", command=page_intruction)
-    boutoninstructions.place(x=370, y=500)
+    boutoninstructions.place(x=455, y=300)
     boutondebutjeu= tk.Button(racine, text="Cliquez sur ce bouton afin de commencer a jouer", font=("Helvetica", "20"), bg="pink", fg="black",command=deuxieme_page_choix)
-    boutondebutjeu.place(x=400, y=700)
+    boutondebutjeu.place(x=485, y=500)
 
 
 premiere_page()
