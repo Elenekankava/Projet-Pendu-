@@ -119,7 +119,7 @@ def clear_window():
 
 def page_aide() :
     clear_window()
-    textes=tk.Label(racine, text='instructions', font='30', fg='black')
+    textes=tk.Label(racine, text='Instructions\n Vous commencerez par sélectionner la longueur du mot que vous souhaitez deviner.\n Ensuite, le but est de deviner le mot générer par l’ordinateur avant que le dessin du pendu se termine.\n A chaque essaie vous proposerez une lettre, si elle est dans le mot la lettre s’affiche à l’écran, si elle ne l’est pas le dessin du pendu avance d’une étape.\n Vous avez le droit à 8 échecs le but est de deviner le mot complet avant que le dessin du pendu soit finalisé.', font='30', fg='black')
     textes.grid()
     bouton_retour=tk.Button(text='retour', command=troisieme_fenetre)
     bouton_retour.grid()
@@ -207,7 +207,7 @@ def show_selection(choices, listbox):
 
 def page_intruction():
     clear_window()
-    textes=tk.Label(racine, text='instructions', font='30', fg='black')
+    textes=tk.Label(racine, text='Instructions\n Vous commencerez par sélectionner la longueur du mot que vous souhaitez deviner.\n Ensuite, le but est de deviner le mot générer par l’ordinateur avant que le dessin du pendu se termine.\n A chaque essaie vous proposerez une lettre, si elle est dans le mot la lettre s’affiche à l’écran, si elle ne l’est pas le dessin du pendu avance d’une étape.\n Vous avez le droit à 8 échecs le but est de deviner le mot complet avant que le dessin du pendu soit finalisé.', font='30', fg='black')
     textes.grid()
     bouton_retour=tk.Button(text='retour', command=premiere_page)
     bouton_retour.grid()
