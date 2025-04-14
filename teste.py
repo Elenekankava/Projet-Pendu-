@@ -25,6 +25,32 @@ def affichage(bouton)->None:
     elif len(lettre)==10:
         numero=(str(lettre[8])+str(lettre[9]))
     lettre = chr(int(numero) + 61)
+    cpt= 0
+    mot= list(mot)
+    lettre_deja_dite=[]
+    while cpt < 8:
+        for i in range (len(mot)):
+            lettre_deja_dite.append(lettre)
+            if lettre in lettre_deja_dite:
+                print("Vous avez déjà dit cette lettre! Veuillez en entrer une autre ")
+            if lettre == mot[i]:
+            affichage[i]= lettre
+        else:
+            cpt += 1
+            if cpt==1:
+                dessin_etape2()
+            elif cpt== 2:
+                dessin_etape3()
+            elif cpt== 3:
+                dessin_etape4()
+            elif cpt== 4:
+                dessin_etape5()
+            elif cpt== 5:
+                dessin_etape6()
+            elif cpt== 6:
+                dessin_etape7()
+            elif cpt== 7:
+                dessin_etape8()
 
 
 x0= 100
