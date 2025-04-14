@@ -32,27 +32,27 @@ def affichage(bouton)->None:
     if lettre in lettre_deja_dite:
         print("Vous avez déjà saisi cette lettre! Veuillez en saisir une différente!")
     lettre_deja_dite.append(lettre)
-        for i in range (len(mot)):
-            if lettre == mot[i]:
-                affichage[i]= lettre
-            else:
-                cpt += 1
-                if cpt==1:
-                    dessin_etape2()
-                elif cpt== 2:
-                    dessin_etape3()
-                elif cpt== 3:
-                    dessin_etape4()
-                elif cpt== 4:
-                    dessin_etape5()
-                elif cpt== 5:
-                    dessin_etape6()
-                elif cpt== 6:
-                    dessin_etape7()
-                elif cpt== 7:
-                    dessin_etape8()
-                elif cpt>= 8:
-                    fenetre_fin()
+    for i in range (len(mot)):
+        if lettre == mot[i]:
+           affichage[i]= lettre
+        else:
+            cpt += 1
+            if cpt==1:
+            dessin_etape2()
+            elif cpt== 2:
+                dessin_etape3()
+            elif cpt== 3:
+                dessin_etape4()
+            elif cpt== 4:
+                dessin_etape5()
+            elif cpt== 5:
+                dessin_etape6()
+            elif cpt== 6:
+                dessin_etape7()
+            elif cpt== 7:
+                dessin_etape8()
+            elif cpt>= 8:
+                fenetre_fin()
 
 
 x0= 100
