@@ -14,6 +14,16 @@ Listemots= {"3": ["coq", "ski", "jus", "nul","gaz", "axe", "rat", "feu", "mur", 
             "8" : ["javelot", "losange", "spirale", "aquarium", "brocante", "diapason","objectif", "logiciel", "pastiche", "scorpion", "tabouret", "triangle", "utopique", "cascade", "boussole", "tornades", "panthère", "mystique", "tournage", "lumières", "fracture", "barbecue", "grenoble", "volcanes", "clarté", "chaleurs", "bourgeon", "printemps", "moulinet", "sauvages", "parfume", "fenêtres", "riviere", "mosaïque", "frissons", "tonnerre", "brouhaha", "marathon", "symphony", "cloporte", "moissons", "cascadeur", "periscope"]
 }
 
+def fenetre_fin():
+    label= tk.Label(racine,text= "Vous avez perdu! Voulez vous faire une nouvelle partie?", font=("helvetica", "30"))
+    bouton_oui= tk.Boutton(racine, text= "Oui, je veux rejouer!", command= premiere_page, padx= 30, pady= 30)
+    bouton_non= tk.Boutton(racine, text= "Non, j'arrête.", command= clear_window, padx= 30, pady=30)
+    label.grid(row= 1, column= 1, columnspan= 3)
+    bouton_oui.grid(row= 3, column= 1)
+    bouton_non.grid(row= 3, column= 2)
+
+tentatives_restantes= 8
+
 def affichage(bouton)->None:
     """affiche la lettre sur le bouton"""
     bouton.config(bg='black',fg='black')
@@ -24,7 +34,39 @@ def affichage(bouton)->None:
     elif len(lettre)==10:
         numero=(str(lettre[8])+str(lettre[9]))
     lettre = chr(int(numero) + 59)
-    print(lettre)
+    mot= list(mot)
+    global cpt
+    global tentatives_restantes
+    lettre= str(lettre)
+    lettre_deja_dite=[]
+    if lettre in lettre_deja_dite:
+        print("Vous avez déjà saisi cette lettre! Veuillez en saisir une différente!")
+    lettre_deja_dite.append(lettre)
+    for i in range (len(mot)):
+        if lettre == mot[i]:
+           affichage[i]= lettre
+        else:
+            cpt += 1
+            tentatives_restantes -= 1
+            print(tentatives_restantes)
+            tentatives= tk.Label(text= tentatives_restantes, font= ("helvetica","20"), padx = 10, pady= 10)
+            tentatives.grid(row= 0, column= 0)
+            if cpt==1:
+                dessin_etape2()
+            elif cpt== 2:
+                dessin_etape3()
+            elif cpt== 3:
+                dessin_etape4()
+            elif cpt== 4:
+                dessin_etape5()
+            elif cpt== 5:
+                dessin_etape6()
+            elif cpt== 6:
+                dessin_etape7()
+            elif cpt== 7:
+                dessin_etape8()
+            elif cpt>= 8:
+                fenetre_fin()
     return lettre
     
 
