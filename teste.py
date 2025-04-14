@@ -38,7 +38,7 @@ def affichage(bouton)->None:
         else:
             cpt += 1
             if cpt==1:
-            dessin_etape2()
+                dessin_etape2()
             elif cpt== 2:
                 dessin_etape3()
             elif cpt== 3:
@@ -108,6 +108,7 @@ def dessin_etape8(canvas):
 def asterix (word) :
     word_l=list(word)
     nombre_asterix=len(word_l)
+    global affichage
     affichage=' *  '*nombre_asterix
     texte.config(text=str(affichage), fg='black', font=30)
 
