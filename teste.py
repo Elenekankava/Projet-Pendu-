@@ -219,9 +219,9 @@ def deuxieme_page_choix():
     listbox = tk.Listbox(racine, listvariable=choices, selectmode="simple")
     listbox.insert('end', '7', '8')
     button = tk.Button(racine, text='Ok', command=partial(show_selection, choices, listbox))
-    label1.grid(column=0, row=0)
-    listbox.grid(row=1, column=0)
-    button.grid(row=2, column=0)
+    label1.place(x=565,y=500)
+    listbox.place(x=700,y=260)
+    button.place(x=750,y=445)
     
 
 def premiere_page():
