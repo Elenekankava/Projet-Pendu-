@@ -10,7 +10,8 @@ def affichage(bouton)->None:
         numero=(lettre[8])
     elif len(lettre)==10:
         numero=(str(lettre[8])+str(lettre[9]))
-    lettre = chr(int(numero) + 64)
+    lettre = chr(int(numero) + 61)
+    print(lettre)
     return lettre
     
 

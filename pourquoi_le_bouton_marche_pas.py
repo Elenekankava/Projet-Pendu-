@@ -14,45 +14,19 @@ Listemots= {"3": ["coq", "ski", "jus", "nul","gaz", "axe", "rat", "feu", "mur", 
             "8" : ["javelot", "losange", "spirale", "aquarium", "brocante", "diapason","objectif", "logiciel", "pastiche", "scorpion", "tabouret", "triangle", "utopique", "cascade", "boussole", "tornades", "panthère", "mystique", "tournage", "lumières", "fracture", "barbecue", "grenoble", "volcanes", "clarté", "chaleurs", "bourgeon", "printemps", "moulinet", "sauvages", "parfume", "fenêtres", "riviere", "mosaïque", "frissons", "tonnerre", "brouhaha", "marathon", "symphony", "cloporte", "moissons", "cascadeur", "periscope"]
 }
 
-cpt = 0
 def affichage(bouton)->None:
     """affiche la lettre sur le bouton"""
+    bouton.config(bg='black',fg='black')
     global lettre
     lettre=str(bouton)
     if len(lettre)==9:
         numero=(lettre[8])
     elif len(lettre)==10:
         numero=(str(lettre[8])+str(lettre[9]))
-    lettre = chr(int(numero) + 61)
-    mot= list(mot)
-    global cpt
-    lettre= str(lettre)
-    lettre_deja_dite=[]
-    if lettre in lettre_deja_dite:
-        print("Vous avez déjà saisi cette lettre! Veuillez en saisir une différente!")
-    lettre_deja_dite.append(lettre)
-    for i in range (len(mot)):
-        if lettre == mot[i]:
-           affichage[i]= lettre
-        else:
-            cpt += 1
-            if cpt==1:
-                dessin_etape2()
-            elif cpt== 2:
-                dessin_etape3()
-            elif cpt== 3:
-                dessin_etape4()
-            elif cpt== 4:
-                dessin_etape5()
-            elif cpt== 5:
-                dessin_etape6()
-            elif cpt== 6:
-                dessin_etape7()
-            elif cpt== 7:
-                dessin_etape8()
-            elif cpt>= 8:
-                fenetre_fin()
-
+    lettre = chr(int(numero) + 59)
+    print(lettre)
+    return lettre
+    
 
 x0= 100
 y= 100
@@ -107,7 +81,6 @@ def dessin_etape8(canvas):
 def asterix (word) :
     word_l=list(word)
     nombre_asterix=len(word_l)
-    global affichage
     affichage=' *  '*nombre_asterix
     texte.config(text=str(affichage), fg='black', font=30)
 
@@ -118,7 +91,7 @@ def clear_window():
 
 def page_aide() :
     clear_window()
-    textes=tk.Label(racine, text='Instructions\n Vous commencerez par sélectionner la longueur du mot que vous souhaitez deviner.\n Ensuite, le but est de deviner le mot générer par l’ordinateur avant que le dessin du pendu se termine.\n A chaque essaie vous proposerez une lettre, si elle est dans le mot la lettre s’affiche à l’écran, si elle ne l’est pas le dessin du pendu avance d’une étape.\n Vous avez le droit à 8 échecs le but est de deviner le mot complet avant que le dessin du pendu soit finalisé.', font='30', fg='black')
+    textes=tk.Label(racine, text='instructions', font='30', fg='black')
     textes.grid()
     bouton_retour=tk.Button(text='retour', command=troisieme_fenetre)
     bouton_retour.grid()
@@ -132,6 +105,10 @@ def troisieme_fenetre ():
     global texte
     texte=tk.Label(racine, text='')
     texte.grid()
+    bouton_aide=tk.Button(text='aide', command=page_aide)
+    bouton_aide.grid()
+    bouton_quitter=tk.Button(text='quitter la partie', command=premiere_page)
+    bouton_quitter.grid()
     bouton_a = tk.Button(racine,text='A',command=lambda : affichage(bouton_a), activebackground='black', foreground='blue')
     bouton_a.grid(column=0, row=0)
     bouton_b = tk.Button(racine,text='B',command=lambda : affichage(bouton_b), activebackground='black', foreground='blue')
@@ -184,10 +161,6 @@ def troisieme_fenetre ():
     bouton_y.grid(column=11, row=1)
     bouton_z = tk.Button(racine,text='Z',command=lambda : affichage(bouton_z), activebackground='black', foreground='blue')
     bouton_z.grid(column=12, row=1)
-    bouton_aide=tk.Button(text='aide', command=page_aide)
-    bouton_aide.grid()
-    bouton_quitter=tk.Button(text='quitter la partie', command=premiere_page)
-    bouton_quitter.grid()
     asterix(mot)
     dessin_etape1()
 
@@ -206,10 +179,10 @@ def show_selection(choices, listbox):
 
 def page_intruction():
     clear_window()
-    textes=tk.Label(racine, text='Instructions\n Vous commencerez par sélectionner la longueur du mot que vous souhaitez deviner.\n Ensuite, le but est de deviner le mot générer par l’ordinateur avant que le dessin du pendu se termine.\n A chaque essaie vous proposerez une lettre, si elle est dans le mot la lettre s’affiche à l’écran, si elle ne l’est pas le dessin du pendu avance d’une étape.\n Vous avez le droit à 8 échecs le but est de deviner le mot complet avant que le dessin du pendu soit finalisé.', font='70', fg='black')
-    textes.place(x=110,y=325)
+    textes=tk.Label(racine, text='instructions', font='30', fg='black')
+    textes.grid()
     bouton_retour=tk.Button(text='retour', command=premiere_page)
-    bouton_retour.place(x=760,y=485)
+    bouton_retour.grid()
 
 def deuxieme_page_choix():
     clear_window()
@@ -218,9 +191,9 @@ def deuxieme_page_choix():
     listbox = tk.Listbox(racine, listvariable=choices, selectmode="simple")
     listbox.insert('end', '7', '8')
     button = tk.Button(racine, text='Ok', command=partial(show_selection, choices, listbox))
-    label1.place(x=565,y=500)
-    listbox.place(x=700,y=260)
-    button.place(x=750,y=445)
+    label1.grid(column=0, row=0)
+    listbox.grid(row=1, column=0)
+    button.grid(row=2, column=0)
     
 
 def premiere_page():
@@ -228,11 +201,11 @@ def premiere_page():
     canvas=tk.Canvas(racine, width=500, height=500)
     canvas.grid()
     texte=tk.Label (racine, text="Bienvenue au Jeu du pendu!", font=("Helvetica", "40"),  fg="blue")
-    texte.place(x=475, y=100)
+    texte.place(x=400, y=100)
     boutoninstructions=tk.Button (racine, text="Cliquez sur ce bouton afin de lire les instructions du jeu", font=("Helvetica", "20"), bg="pink", fg="black", command=page_intruction)
-    boutoninstructions.place(x=455, y=300)
+    boutoninstructions.place(x=370, y=500)
     boutondebutjeu= tk.Button(racine, text="Cliquez sur ce bouton afin de commencer a jouer", font=("Helvetica", "20"), bg="pink", fg="black",command=deuxieme_page_choix)
-    boutondebutjeu.place(x=485, y=500)
+    boutondebutjeu.place(x=400, y=700)
 
 
 premiere_page()
