@@ -1,7 +1,7 @@
 import tkinter as tk
 racine=tk.Tk()
 
-def affichage(bouton):
+def affichage(bouton)->None:
     """affiche la lettre sur le bouton"""
     bouton.config(bg='black',fg='black')
     global lettre
