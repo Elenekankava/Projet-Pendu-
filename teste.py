@@ -24,7 +24,7 @@ def affichage(bouton)->None:
         numero=(lettre[8])
     elif len(lettre)==10:
         numero=(str(lettre[8])+str(lettre[9]))
-    lettre = chr(int(numero) + 64)
+    lettre = chr(int(numero) + 61)
 
 
 x0= 100
@@ -104,10 +104,6 @@ def troisieme_fenetre ():
     global texte
     texte=tk.Label(racine, text='')
     texte.grid()
-    bouton_aide=tk.Button(text='aide', command=page_aide)
-    bouton_aide.grid()
-    bouton_quitter=tk.Button(text='quitter la partie', command=premiere_page)
-    bouton_quitter.grid()
     bouton_a = tk.Button(racine,text='A',command=lambda : affichage(bouton_a), activebackground='black', foreground='blue')
     bouton_a.grid(column=0, row=0)
     bouton_b = tk.Button(racine,text='B',command=lambda : affichage(bouton_b), activebackground='black', foreground='blue')
@@ -160,6 +156,10 @@ def troisieme_fenetre ():
     bouton_y.grid(column=11, row=1)
     bouton_z = tk.Button(racine,text='Z',command=lambda : affichage(bouton_z), activebackground='black', foreground='blue')
     bouton_z.grid(column=12, row=1)
+    bouton_aide=tk.Button(text='aide', command=page_aide)
+    bouton_aide.grid()
+    bouton_quitter=tk.Button(text='quitter la partie', command=premiere_page)
+    bouton_quitter.grid()
     asterix(mot)
     dessin_etape1()
 
