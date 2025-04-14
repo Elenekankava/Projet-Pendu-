@@ -51,12 +51,17 @@ def asterix (word) :
     
 asterix(str(mot))
 
-def verifie_mot(bouton):
-    lettre= input("Veuillez saisir une lettre")
+def verifie_mot():
+    
+    
     cpt= 0
     mot= list(mot)
+    lettre_deja_dite=[]
     while cpt < 8:
     for i in range (len(mot)):
+        lettre_deja_dite.append(lettre)
+        if lettre in lettre_deja_dite:
+            print("Vous avez déjà dit cette lettre! Veuillez en entrer une autre ")
         if lettre == mot[i]:
             affichage[i]= lettre
         else:
