@@ -15,43 +15,55 @@ Listemots= {"3": ["coq", "ski", "jus", "nul","gaz", "axe", "rat", "feu", "mur", 
 }
 
 cpt = 0
-def affichage(bouton)->None:
+lettre_deja_dite=[]
+def show_selection(choices, listbox):
+    choices = choices.get()
+    text=""
+    for index in listbox.curselection():
+        text += choices[index]
+    global mot
+    mot = rd.choice(Listemots[str(text)])
+    mot=str(mot)
+    print(mot)
+    troisieme_fenetre()
+    return text
+
+def affichage(event):
     """affiche la lettre sur le bouton"""
-    global lettre
-    lettre=str(bouton)
-    if len(lettre)==9:
-        numero=(lettre[8])
-    elif len(lettre)==10:
-        numero=(str(lettre[8])+str(lettre[9]))
-    lettre = chr(int(numero) + 61)
-    mot= list(mot)
+    message.config(text='')
+    c=0
+    lettre=str(event.char)
+    print(lettre)
     global cpt
-    lettre= str(lettre)
-    lettre_deja_dite=[]
+    print(lettre_deja_dite)
     if lettre in lettre_deja_dite:
-        print("Vous avez déjà saisi cette lettre! Veuillez en saisir une différente!")
+        message.config(text="Vous avez déjà saisi cette lettre! Veuillez en saisir une différente!")
+        return
     lettre_deja_dite.append(lettre)
-    for i in range (len(mot)):
-        if lettre == mot[i]:
-           affichage[i]= lettre
-        else:
-            cpt += 1
-            if cpt==1:
-                dessin_etape2()
-            elif cpt== 2:
-                dessin_etape3()
-            elif cpt== 3:
-                dessin_etape4()
-            elif cpt== 4:
-                dessin_etape5()
-            elif cpt== 5:
-                dessin_etape6()
-            elif cpt== 6:
-                dessin_etape7()
-            elif cpt== 7:
-                dessin_etape8()
-            elif cpt>= 8:
-                fenetre_fin()
+    if lettre in (list(mot)):
+        for i in range (len(list(mot))):
+            if lettre==(list(mot))[i] :
+                affichage[i]=lettre
+        ecriture=' '.join(affichage)
+        texte.config(text=str(ecriture))           
+    else :
+        cpt += 1
+        if cpt==1:
+            dessin_etape2()
+        elif cpt== 2:
+            dessin_etape3()
+        elif cpt== 3:
+            dessin_etape4()
+        elif cpt== 4:
+            dessin_etape5()
+        elif cpt== 5:
+            dessin_etape6()
+        elif cpt== 6:
+            dessin_etape7()
+        elif cpt== 7:
+            dessin_etape8()
+        elif cpt>= 8:
+            fenetre_fin()
 
 
 x0= 100
@@ -108,8 +120,11 @@ def asterix (word) :
     word_l=list(word)
     nombre_asterix=len(word_l)
     global affichage
-    affichage=' *  '*nombre_asterix
-    texte.config(text=str(affichage), fg='black', font=30)
+    affichage=[]
+    for i in range (nombre_asterix):
+        affichage.append(' *  ')
+    ecriture=' '.join(affichage)
+    texte.config(text=str(ecriture), fg='black', font=30)
 
 
 def clear_window():
@@ -132,77 +147,19 @@ def troisieme_fenetre ():
     global texte
     texte=tk.Label(racine, text='')
     texte.grid()
-    bouton_a = tk.Button(racine,text='A',command=lambda : affichage(bouton_a), activebackground='black', foreground='blue')
-    bouton_a.grid()
-    bouton_b = tk.Button(racine,text='B',command=lambda : affichage(bouton_b), activebackground='black', foreground='blue')
-    bouton_b.grid()
-    bouton_c = tk.Button(racine,text='C',command=lambda : affichage(bouton_c), activebackground='black', foreground='blue')
-    bouton_c.grid()
-    bouton_d = tk.Button(racine,text='D',command=lambda : affichage(bouton_d), activebackground='black', foreground='blue')
-    bouton_d.grid()
-    bouton_e = tk.Button(racine,text='E',command=lambda : affichage(bouton_e), activebackground='black', foreground='blue')
-    bouton_e.grid()
-    bouton_f = tk.Button(racine,text='F',command=lambda : affichage(bouton_f), activebackground='black', foreground='blue')
-    bouton_f.grid()
-    bouton_g = tk.Button(racine,text='G',command=lambda : affichage(bouton_g), activebackground='black', foreground='blue')
-    bouton_g.grid()
-    bouton_h = tk.Button(racine,text='H',command=lambda : affichage(bouton_h), activebackground='black', foreground='blue')
-    bouton_h.grid()
-    bouton_i = tk.Button(racine,text='I',command=lambda : affichage(bouton_i), activebackground='black', foreground='blue')
-    bouton_i.grid()
-    bouton_j = tk.Button(racine,text='J',command=lambda : affichage(bouton_j), activebackground='black', foreground='blue')
-    bouton_j.grid()
-    bouton_k = tk.Button(racine,text='K',command=lambda : affichage(bouton_k), activebackground='black', foreground='blue')
-    bouton_k.grid()
-    bouton_l = tk.Button(racine,text='L',command=lambda : affichage(bouton_l), activebackground='black', foreground='blue')
-    bouton_l.grid()
-    bouton_m = tk.Button(racine,text='M',command=lambda : affichage(bouton_m), activebackground='black', foreground='blue')
-    bouton_m.grid()
-    bouton_n = tk.Button(racine,text='N',command=lambda : affichage(bouton_n), activebackground='black', foreground='blue')
-    bouton_n.grid()
-    bouton_o = tk.Button(racine,text='O',command=lambda : affichage(bouton_o), activebackground='black', foreground='blue')
-    bouton_o.grid(column=1, row=1)
-    bouton_p = tk.Button(racine,text='P',command=lambda : affichage(bouton_p), activebackground='black', foreground='blue')
-    bouton_p.grid(column=2, row=1)
-    bouton_q = tk.Button(racine,text='Q',command=lambda : affichage(bouton_q), activebackground='black', foreground='blue')
-    bouton_q.grid(column=3, row=1)
-    bouton_r = tk.Button(racine,text='R',command=lambda : affichage(bouton_r), activebackground='black', foreground='blue')
-    bouton_r.grid(column=4, row=1)
-    bouton_s = tk.Button(racine,text='S',command=lambda : affichage(bouton_s), activebackground='black', foreground='blue')
-    bouton_s.grid(column=5, row=1)
-    bouton_t = tk.Button(racine,text='T',command=lambda : affichage(bouton_t), activebackground='black', foreground='blue')
-    bouton_t.grid(column=6, row=1)
-    bouton_u = tk.Button(racine,text='U',command=lambda : affichage(bouton_u), activebackground='black', foreground='blue')
-    bouton_u.grid(column=7, row=1)
-    bouton_v = tk.Button(racine,text='V',command=lambda : affichage(bouton_v), activebackground='black', foreground='blue')
-    bouton_v.grid(column=8, row=1)
-    bouton_w= tk.Button(racine,text='W',command=lambda : affichage(bouton_w), activebackground='black', foreground='blue')
-    bouton_w.grid(column=9, row=1)
-    bouton_x = tk.Button(racine,text='X',command=lambda : affichage(bouton_x), activebackground='black', foreground='blue')
-    bouton_x.grid(column=10, row=1)
-    bouton_y = tk.Button(racine,text='Y',command=lambda : affichage(bouton_y), activebackground='black', foreground='blue')
-    bouton_y.grid(column=11, row=1)
-    bouton_z = tk.Button(racine,text='Z',command=lambda : affichage(bouton_z), activebackground='black', foreground='blue')
-    bouton_z.grid(column=12, row=1)
+    racine.bind("<KeyPress>", affichage)
     bouton_aide=tk.Button(text='aide', command=page_aide)
     bouton_aide.grid()
     bouton_quitter=tk.Button(text='quitter la partie', command=premiere_page)
     bouton_quitter.grid()
+    global message
+    message=tk.Label(racine, text='')
+    message.grid
     asterix(mot)
     dessin_etape1()
 
     
 
-def show_selection(choices, listbox):
-    choices = choices.get()
-    text=""
-    for index in listbox.curselection():
-        text += choices[index]
-    global mot
-    mot = rd.choice(Listemots[str(text)])
-    print(mot)
-    troisieme_fenetre()
-    return text
 
 def page_intruction():
     clear_window()
