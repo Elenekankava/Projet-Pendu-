@@ -18,6 +18,7 @@ cpt = 0
 lettre_deja_dite=[]
 def show_selection(choices, listbox):
     choices = choices.get()
+    global text
     text=""
     for index in listbox.curselection():
         text += choices[index]
@@ -28,7 +29,21 @@ def show_selection(choices, listbox):
     troisieme_fenetre()
     return text
 
-
+def centrage_texte():
+    if str(text) == '3':
+        texte.place(x=745,y=600)
+    if str(text) == '4':
+        texte.place(x=727,y=600)
+    if str(text) == '5':
+        texte.place(x=709,y=600)
+    if str(text) == '6':
+        texte.place(x=691,y=600)
+    if str(text) == '7':
+        texte.place(x=675,y=600)
+    if str(text) == '8':
+        texte.place(x=665,y=600)
+    
+    
 
 def affichage(event):
     """affiche la lettre sur le bouton"""
@@ -147,8 +162,8 @@ def troisieme_fenetre ():
     canvas= tk.Canvas(racine,width= 500, height=500)
     canvas.grid()
     global texte
-    texte=tk.Label(racine, text='')
-    texte.place(x=750,y= 600)
+    texte=tk.Label(racine, text='' )
+    centrage_texte()
     racine.bind("<KeyPress>", affichage)
     bouton_aide=tk.Button(text='aide', command=page_aide)
     bouton_aide.place(x=775,y=550)
