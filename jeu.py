@@ -28,6 +28,8 @@ def show_selection(choices, listbox):
     troisieme_fenetre()
     return text
 
+
+
 def affichage(event):
     """affiche la lettre sur le bouton"""
     message.config(text='')
@@ -133,7 +135,7 @@ def clear_window():
 
 def page_aide() :
     clear_window()
-    textes=tk.Label(racine, text='Instructions\n Vous commencerez par sélectionner la longueur du mot que vous souhaitez deviner.\n Ensuite, le but est de deviner le mot générer par l’ordinateur avant que le dessin du pendu se termine.\n A chaque essaie vous proposerez une lettre, si elle est dans le mot la lettre s’affiche à l’écran, si elle ne l’est pas le dessin du pendu avance d’une étape.\n Vous avez le droit à 8 échecs le but est de deviner le mot complet avant que le dessin du pendu soit finalisé.', font='30', fg='black')
+    textes=tk.Label(racine, text='Instructions\n Vous commencerez par sélectionner la longueur du mot que vous souhaitez deviner.\n Ensuite, le but est de deviner le mot générer par l’ordinateur avant que le dessin du pendu se termine.\n A chaque essaie vous proposerez une lettre en la tapant sur votre clavier, si elle est dans le mot la lettre s’affiche à l’écran, si elle ne l’est pas le dessin du pendu avance d’une étape.\n Vous avez le droit à 8 échecs le but est de deviner le mot complet avant que le dessin du pendu soit finalisé.', font='30', fg='black')
     textes.grid()
     bouton_retour=tk.Button(text='retour', command=troisieme_fenetre)
     bouton_retour.grid()
@@ -146,15 +148,15 @@ def troisieme_fenetre ():
     canvas.grid()
     global texte
     texte=tk.Label(racine, text='')
-    texte.grid()
+    texte.place(x=750,y= 600)
     racine.bind("<KeyPress>", affichage)
     bouton_aide=tk.Button(text='aide', command=page_aide)
-    bouton_aide.grid()
+    bouton_aide.place(x=775,y=550)
     bouton_quitter=tk.Button(text='quitter la partie', command=premiere_page)
-    bouton_quitter.grid()
+    bouton_quitter.place(x=745,y=500)
     global message
     message=tk.Label(racine, text='')
-    message.grid
+    message.place(x=630,y=650)
     asterix(mot)
     dessin_etape1()
 
