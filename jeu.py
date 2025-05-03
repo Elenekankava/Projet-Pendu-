@@ -15,7 +15,9 @@ Listemots= {"3": ["coq", "ski", "jus", "nul","gaz", "axe", "rat", "feu", "mur", 
 }
 
 cpt = 0
+
 lettre_deja_dite=[]
+
 def show_selection(choices, listbox):
     choices = choices.get()
     selection = listbox.curselection()
@@ -66,6 +68,7 @@ def apparition_lettre(event):
         ecriture=' '.join(affichage)
         texte.config(text=str(ecriture))   
     if affichage == list(mot):
+        lettre_deja_dite=[]
         page_victoire()        
     else :
         cpt += 1
@@ -221,7 +224,6 @@ def dernier_page_du_jeu():
 
 def page_victoire():
     clear_window()
-    lettre_deja_dite=[]
     encadrerboutons=tk.Frame(racine, bg='lavender', bd=4, relief='solid')
     encadrerboutons.place(x=550, y=300, width='200', height='300')
     labelgagne=tk.Label(racine, text='Vous avez gagné!\n Souhaitez vous rejouer?', font=('showcard gothic','35'))
@@ -235,7 +237,6 @@ def page_victoire():
 
 def fin_demande_rejouer():
     clear_window()
-    lettre_deja_dite=[]
     encadrerboutons=tk.Frame(racine, bg='lavender', bd=4, relief='solid')
     encadrerboutons.place(x=550, y=300, width='200', height='300')
     labelperdu=tk.Label(racine, text='Vous avez malheureusement perdu la partie!\n Souhaitez vous retenter votre chance?', font=('showcard gothic','35'))
