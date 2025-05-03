@@ -18,13 +18,15 @@ cpt = 0
 lettre_deja_dite=[]
 def show_selection(choices, listbox):
     choices = choices.get()
-    global text
-    text=""
-    for index in listbox.curselection():
-        text += choices[index]
+    selection = listbox.curselection()
+    if not selection:
+        return
+    taille = listbox.get(selection[0])
     global mot
-    mot = rd.choice(Listemots[str(text)])
+    mot = rd.choice(Listemots[taille])
     mot=str(mot)
+    global text
+    text=len(mot)
     print(mot)
     troisieme_fenetre()
     return text
@@ -45,7 +47,7 @@ def centrage_texte():
     
     
 
-def affichage(event):
+def apparition_lettre(event):
     """affiche la lettre sur le bouton"""
     message.config(text='')
     c=0
@@ -62,7 +64,9 @@ def affichage(event):
             if lettre==(list(mot))[i] :
                 affichage[i]=lettre
         ecriture=' '.join(affichage)
-        texte.config(text=str(ecriture))           
+        texte.config(text=str(ecriture))   
+    if affichage == list(mot):
+        page_victoire()        
     else :
         cpt += 1
         if cpt==1:
@@ -138,9 +142,7 @@ def asterix (word) :
     word_l=list(word)
     nombre_asterix=len(word_l)
     global affichage
-    affichage=[]
-    for i in range (nombre_asterix):
-        affichage.append(' *  ')
+    affichage = [' *  '] * len(word)
     ecriture=' '.join(affichage)
     texte.config(text=str(ecriture), fg='black', font=30)
 
@@ -165,7 +167,7 @@ def troisieme_fenetre ():
     global texte
     texte=tk.Label(racine, text='' )
     centrage_texte()
-    racine.bind("<KeyPress>", affichage)
+    racine.bind("<KeyPress>", apparition_lettre)
     bouton_aide=tk.Button(text='aide', command=page_aide)
     bouton_aide.place(x=775,y=550)
     bouton_quitter=tk.Button(text='quitter la partie', command=premiere_page)
@@ -219,6 +221,7 @@ def dernier_page_du_jeu():
 
 def page_victoire():
     clear_window()
+    lettre_deja_dite=[]
     encadrerboutons=tk.Frame(racine, bg='lavender', bd=4, relief='solid')
     encadrerboutons.place(x=550, y=300, width='200', height='300')
     labelgagne=tk.Label(racine, text='Vous avez gagné!\n Souhaitez vous rejouer?', font=('showcard gothic','35'))
@@ -232,6 +235,7 @@ def page_victoire():
 
 def fin_demande_rejouer():
     clear_window()
+    lettre_deja_dite=[]
     encadrerboutons=tk.Frame(racine, bg='lavender', bd=4, relief='solid')
     encadrerboutons.place(x=550, y=300, width='200', height='300')
     labelperdu=tk.Label(racine, text='Vous avez malheureusement perdu la partie!\n Souhaitez vous retenter votre chance?', font=('showcard gothic','35'))
