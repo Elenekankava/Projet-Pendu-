@@ -15,7 +15,8 @@ Listemots= {"3": ["coq", "ski", "jus", "nul","gaz", "axe", "rat", "feu", "mur", 
 }
 
 cpt = 0
-
+global scrore
+score=0
 global lettre_deja_dite
 lettre_deja_dite=[]
 
@@ -59,6 +60,8 @@ def apparition_lettre(event):
     lettre=str(event.char)
     print(lettre)
     global cpt
+    global lettre_deja_dite
+    print(lettre_deja_dite)
     if lettre in lettre_deja_dite:
         message.config(text="Vous avez déjà saisi cette lettre! Veuillez en saisir une différente!")
         return
@@ -70,6 +73,8 @@ def apparition_lettre(event):
         ecriture=' '.join(affichage)
         texte.config(text=str(ecriture))   
     if affichage == list(mot):
+        global score
+        score+=1
         lettre_deja_dite=[]
         page_victoire()        
     else :
@@ -158,14 +163,20 @@ def clear_window():
 
 def page_aide() :
     clear_window()
-    textes=tk.Label(racine, text='Instructions\n Vous commencerez par sélectionner la longueur du mot que vous souhaitez deviner.\n Ensuite, le but est de deviner le mot générer par l’ordinateur avant que le dessin du pendu se termine.\n A chaque essaie vous proposerez une lettre en la tapant sur votre clavier, si elle est dans le mot la lettre s’affiche à l’écran, si elle ne l’est pas le dessin du pendu avance d’une étape.\n Vous avez le droit à 8 échecs le but est de deviner le mot complet avant que le dessin du pendu soit finalisé.', font='30', fg='black')
-    textes.grid()
+    encadrertexte=tk.Frame(racine, bg="lavender", bd=4, relief='solid')
+    encadrertexte.place(x=200, y=150, width=900, height=500)
+    textes=tk.Label(racine, text='Vous commencerez par sélectionner la longueur du mot que vous souhaitez deviner.\n Ensuite, le but est de deviner le mot générer par l’ordinateur \n avant que le dessin du pendu se termine.\n A chaque essaie vous proposerez une lettre, si elle est dans le mot la lettre s’affiche à l’écran,\n si elle ne l’est pas le dessin du pendu avance d’une étape.\n Vous avez le droit à 8 échecs le but est de deviner le mot complet \n avant que le dessin du pendu soit finalisé.', font=('Helvetica', '15'), bg='lavender', fg='black')
+    textes.place(x=225,y=300)
+    titre=tk.Label(racine, text='Instructions:', font=('showcard gothic', '25'), fg='black')
+    titre.place(x=200, y=100)
     bouton_retour=tk.Button(text='retour', command=troisieme_fenetre)
-    bouton_retour.grid()
+    bouton_retour.place(x=650, y=500)
     
 
 def troisieme_fenetre ():
     clear_window()
+    resultat=tk.Label(text='score : '+str(score))
+    resultat.place(x=745,y=745)
     global canvas
     canvas= tk.Canvas(racine,width= 500, height=500)
     canvas.grid()
