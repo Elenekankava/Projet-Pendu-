@@ -108,7 +108,6 @@ def dessin_etape1():
     ligne4_etape1= canvas.create_line(x1, y, x1, y +30)
     ligne_diagonale_etape1= canvas.create_line(x0 + 20, y, x0, y+ 20)
     ligne_horizontale_etape1= canvas.create_line(x0- 10, y+ 300, x1-150, y+300)
-    return
 
 def dessin_etape2():
     dessin_etape1()
@@ -178,7 +177,7 @@ def troisieme_fenetre ():
     resultat=tk.Label(text='score : '+str(score))
     resultat.place(x=745,y=745)
     global canvas
-    canvas= tk.Canvas(racine,width= 500, height=500)
+    canvas= tk.Canvas(racine,width= 1000, height=800)
     canvas.grid()
     global texte
     texte=tk.Label(racine, text='' )
