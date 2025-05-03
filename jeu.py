@@ -16,7 +16,10 @@ Listemots= {"3": ["coq", "ski", "jus", "nul","gaz", "axe", "rat", "feu", "mur", 
 
 cpt = 0
 
+global lettre_deja_dite
 lettre_deja_dite=[]
+
+print(lettre_deja_dite)
 
 def show_selection(choices, listbox):
     choices = choices.get()
@@ -56,7 +59,6 @@ def apparition_lettre(event):
     lettre=str(event.char)
     print(lettre)
     global cpt
-    print(lettre_deja_dite)
     if lettre in lettre_deja_dite:
         message.config(text="Vous avez déjà saisi cette lettre! Veuillez en saisir une différente!")
         return
