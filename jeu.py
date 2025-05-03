@@ -80,12 +80,12 @@ def affichage(event):
         elif cpt== 7:
             dessin_etape8()
         elif cpt>= 8:
-            fenetre_fin()
+            fin_demande_rejouer()
 
 
-x0= 100
+x0= 600
 y= 100
-x1= 350
+x1= 850
 y1= 155
 def dessin_etape1():
     ligne1_etape1= canvas.create_line(x0, y, x1, y)
@@ -98,7 +98,7 @@ def dessin_etape1():
 
 def dessin_etape2():
     dessin_etape1()
-    cercle= canvas.create_oval((x1 - 25, y1+ 25), (x1 + 25, y1- 25), width=3, fill="pink")
+    cercle= canvas.create_oval((x1 - 25, y1+ 25), (x1 + 25, y1- 25), width=3, fill="misty rose")
     return
 
 def dessin_etape3():
@@ -127,11 +127,12 @@ def dessin_etape7():
 
 def dessin_etape8(canvas):
     canvas.delete("all")
-    cercle=canvas.create_oval((250-75, 250-75),(250+75, 250+75), fill="black")
-    cercle=canvas.create_oval((250-70, 250-70),(250+70, 250+70), fill="pink")
-    yeux1=canvas.create_oval((220-15, 230-15),(220+15, 230+15), fill="black")
-    yeux2=canvas.create_oval((280-15, 230-15),(280+15, 230+15), fill="black")
-    bouche=canvas.create_line((220,280),(270,280), fill="black", width=4)
+    cercle=canvas.create_oval((800-75, 250-75),(800+75, 250+75), fill="black")
+    cercle=canvas.create_oval((800-70, 250-70),(800+70, 250+70), fill="misty rose")
+    yeux1=canvas.create_oval((770-15, 230-15),(770+15, 230+15), fill="black")
+    yeux2=canvas.create_oval((830-15, 230-15),(830+15, 230+15), fill="black")
+    bouche=canvas.create_line((770,280),(820,280), fill="black", width=4)
+    fin_demande_rejouer()
 
 def asterix (word) :
     word_l=list(word)
@@ -175,15 +176,17 @@ def troisieme_fenetre ():
     asterix(mot)
     dessin_etape1()
 
-    
-
 
 def page_intruction():
     clear_window()
-    textes=tk.Label(racine, text='Instructions\n Vous commencerez par sélectionner la longueur du mot que vous souhaitez deviner.\n Ensuite, le but est de deviner le mot générer par l’ordinateur avant que le dessin du pendu se termine.\n A chaque essaie vous proposerez une lettre, si elle est dans le mot la lettre s’affiche à l’écran, si elle ne l’est pas le dessin du pendu avance d’une étape.\n Vous avez le droit à 8 échecs le but est de deviner le mot complet avant que le dessin du pendu soit finalisé.', font='70', fg='black')
-    textes.place(x=110,y=325)
+    encadrertexte=tk.Frame(racine, bg="lavender", bd=4, relief='solid')
+    encadrertexte.place(x=200, y=150, width=900, height=500)
+    textes=tk.Label(racine, text='Vous commencerez par sélectionner la longueur du mot que vous souhaitez deviner.\n Ensuite, le but est de deviner le mot générer par l’ordinateur \n avant que le dessin du pendu se termine.\n A chaque essaie vous proposerez une lettre, si elle est dans le mot la lettre s’affiche à l’écran,\n si elle ne l’est pas le dessin du pendu avance d’une étape.\n Vous avez le droit à 8 échecs le but est de deviner le mot complet \n avant que le dessin du pendu soit finalisé.', font=('Helvetica', '15'), bg='lavender', fg='black')
+    textes.place(x=225,y=300)
+    titre=tk.Label(racine, text='Instructions:', font=('showcard gothic', '25'), fg='black')
+    titre.place(x=200, y=100)
     bouton_retour=tk.Button(text='retour', command=premiere_page)
-    bouton_retour.place(x=760,y=485)
+    bouton_retour.place(x=650, y=500)
 
 def deuxieme_page_choix():
     clear_window()
@@ -196,17 +199,50 @@ def deuxieme_page_choix():
     listbox.place(x=700,y=260)
     button.place(x=750,y=445)
     
-
 def premiere_page():
     clear_window()
-    canvas=tk.Canvas(racine, width=500, height=500)
+    canvas=tk.Canvas(racine, width=1000, height=700)
     canvas.grid()
-    texte=tk.Label (racine, text="Bienvenue au Jeu du pendu!", font=("Helvetica", "40"),  fg="blue")
-    texte.place(x=475, y=100)
-    boutoninstructions=tk.Button (racine, text="Cliquez sur ce bouton afin de lire les instructions du jeu", font=("Helvetica", "20"), bg="pink", fg="black", command=page_intruction)
-    boutoninstructions.place(x=455, y=300)
-    boutondebutjeu= tk.Button(racine, text="Cliquez sur ce bouton afin de commencer a jouer", font=("Helvetica", "20"), bg="pink", fg="black",command=deuxieme_page_choix)
-    boutondebutjeu.place(x=485, y=500)
+    texte=tk.Label (racine, text="Bienvenue au Jeu du pendu!", font=("Rockwell extra bold", '40'), fg="dark slate blue")
+    texte.place(x=325, y=100)
+    encadrement=tk.Frame(racine, bg="orchid4", bd=4, relief='solid')
+    encadrement.place(x=325, y=200, width=900, height=400)
+    boutoninstructions=tk.Button (racine, text="Cliquez sur ce bouton afin de lire les instructions du jeu", font=("showcard gothic", "20"), bg="lavender", fg="dark orchid4", command=page_intruction)
+    boutoninstructions.place(x=350, y=300)
+    boutondebutjeu= tk.Button(racine, text="Cliquez sur ce bouton afin de commencer a jouer", font=("showcard gothic", "20"), bg="lavender", fg="dark orchid4",command=deuxieme_page_choix)
+    boutondebutjeu.place(x=400, y=450)
+
+def dernier_page_du_jeu():
+    clear_window()
+    labelfin=tk.Label(text='Dommage! On espere vous revoir une autre fois!', font=('showcard gothic','30'), fg='brown4')
+    labelfin.place(x=150,y=300)
+
+def page_victoire():
+    clear_window()
+    encadrerboutons=tk.Frame(racine, bg='lavender', bd=4, relief='solid')
+    encadrerboutons.place(x=550, y=300, width='200', height='300')
+    labelgagne=tk.Label(racine, text='Vous avez gagné!\n Souhaitez vous rejouer?', font=('showcard gothic','35'))
+    labeltext=tk.Label(racine, text="Comme les sages le disent, une victoire est bien, deux ou plus encore meilleure;)", font=('french script mt', '30'))
+    labeltext.place(x=350, y=215)
+    bouton_oui=tk.Button(racine,text='oui', font=('showcard gothic','30'), command=deuxieme_page_choix)
+    bouton_non=tk.Button(racine,text='non', font=('showcard gothic','30'), command=dernier_page_du_jeu)
+    labelgagne.place(x=150,y=100)
+    bouton_oui.place(x=600,y=350)
+    bouton_non.place(x=600,y=450)
+
+def fin_demande_rejouer():
+    clear_window()
+    encadrerboutons=tk.Frame(racine, bg='lavender', bd=4, relief='solid')
+    encadrerboutons.place(x=550, y=300, width='200', height='300')
+    labelperdu=tk.Label(racine, text='Vous avez malheureusement perdu la partie!\n Souhaitez vous retenter votre chance?', font=('showcard gothic','35'))
+    labeltext=tk.Label(racine, text="Comme les sages le disent, qui ne tente rien n'a rien ;)", font=('french script mt', '40'))
+    labeltext.place(x=350, y=215)
+    bouton_oui=tk.Button(racine,text='oui', font=('showcard gothic','30'), command=deuxieme_page_choix)
+    bouton_non=tk.Button(racine,text='non', font=('showcard gothic','30'), command=dernier_page_du_jeu)
+    labelperdu.place(x=150,y=100)
+    bouton_oui.place(x=600,y=350)
+    bouton_non.place(x=600,y=450)
+
 
 
 premiere_page()
