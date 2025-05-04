@@ -252,6 +252,7 @@ lettre_deja_dite=[]
 global numero_partie
 numero_partie=0
 print(lettre_deja_dite)
+apparition_page_trois=0
 
 def show_selection(choices, listbox):
     choices = choices.get()
@@ -301,6 +302,8 @@ def apparition_lettre(event):
     global numero_partie
     global cpt
     global lettre_deja_dite
+    global apparition_page_trois
+    global ecriture
     print(lettre_deja_dite)
     if lettre in lettre_deja_dite:
         message.config(text="Vous avez déjà saisi cette lettre! Veuillez en saisir une différente!")
@@ -331,12 +334,14 @@ def apparition_lettre(event):
         elif cpt>= 8:
             fin_demande_rejouer()
             numero_partie+=1
+            apparition_page_trois=0
     if affichage == list(mot):
         numero_partie+=1
         score=cpt
         ecriture_score=str(ecriture_score)+'\n'+'score de la parite numero '+str(numero_partie)+' : '+str(score)
         lettre_deja_dite=[]
         cpt=0
+        apparition_page_trois=0
         page_victoire()   
 
 
@@ -430,7 +435,10 @@ def affichage_indication():
 
 def troisieme_fenetre ():
     clear_window()
+    global apparition_page_trois
     global text_indication
+    global ecriture
+    apparition_page_trois+=1
     text_indication=tk.Label(racine, text='')
     text_indication.grid()
     bouton_score=tk.Button(racine, text='score', command=page_score)
@@ -452,8 +460,26 @@ def troisieme_fenetre ():
     global message
     message=tk.Label(racine, text='')
     message.place(x=630,y=650)
-    asterix(mot)
-    dessin_etape1()
+    if apparition_page_trois==1 :
+        asterix(mot)
+    else :
+        texte.config(text=str(ecriture))
+    if cpt==0:
+        dessin_etape1()
+    elif cpt==1:
+        dessin_etape2()
+    elif cpt== 2:
+        dessin_etape3()
+    elif cpt== 3:
+        dessin_etape4()
+    elif cpt== 4:
+        dessin_etape5()
+    elif cpt== 5:
+        dessin_etape6()
+    elif cpt== 6:
+        dessin_etape7()
+    elif cpt== 7:
+        dessin_etape8()
 
 
 def page_intruction():
