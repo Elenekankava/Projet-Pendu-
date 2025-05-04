@@ -334,11 +334,15 @@ def apparition_lettre(event):
         elif cpt>= 8:
             fin_demande_rejouer()
             numero_partie+=1
+            score='perdue, 8 tentatives'
+            ecriture_score=str(ecriture_score)+'\n'+'score de la partie numero '+str(numero_partie)+' : '+str(score)
+            cpt=0
+            lettre_deja_dite=[]
             apparition_page_trois=0
     if affichage == list(mot):
         numero_partie+=1
         score=cpt
-        ecriture_score=str(ecriture_score)+'\n'+'score de la parite numero '+str(numero_partie)+' : '+str(score)
+        ecriture_score=str(ecriture_score)+'\n'+'score de la partie numero '+str(numero_partie)+' : '+str(score)
         lettre_deja_dite=[]
         cpt=0
         apparition_page_trois=0
@@ -424,10 +428,10 @@ def page_aide() :
 def page_score() :
     clear_window()
     global ecriture_score
-    ecriture_score_bouton=tk.Label(racine,text=str(ecriture_score))
-    ecriture_score_bouton.grid()  
-    bouton_retour_page_trois=tk.Button(racine, text='retour',command=troisieme_fenetre)  
-    bouton_retour_page_trois.grid()
+    ecriture_score_bouton=tk.Label(racine,text=str(ecriture_score),font=('Rockwell', '15'), bg='lavender', fg='darkorchid4')
+    ecriture_score_bouton.place(x=400, y=200)
+    bouton_retour_page_trois=tk.Button(racine, text='retour',command=troisieme_fenetre,fg='white',bg='mediumorchid1',bd=2)  
+    bouton_retour_page_trois.place(x=470, y=700)
 
 def affichage_indication():
     global indication
