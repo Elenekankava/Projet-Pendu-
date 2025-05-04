@@ -65,18 +65,13 @@ def apparition_lettre(event):
     if lettre in lettre_deja_dite:
         message.config(text="Vous avez déjà saisi cette lettre! Veuillez en saisir une différente!")
         return
-    lettre_deja_dite.append(lettre)
+    lettre_deja_dite.append(lettre)   
     if lettre in (list(mot)):
         for i in range (len(list(mot))):
             if lettre==(list(mot))[i] :
                 affichage[i]=lettre
         ecriture=' '.join(affichage)
         texte.config(text=str(ecriture))   
-    if affichage == list(mot):
-        global score
-        score+=1
-        lettre_deja_dite=[]
-        page_victoire()        
     else :
         cpt += 1
         if cpt==1:
@@ -95,6 +90,12 @@ def apparition_lettre(event):
             dessin_etape8()
         elif cpt>= 8:
             fin_demande_rejouer()
+    if affichage == list(mot):
+        global score
+        score+=1
+        lettre_deja_dite=[]
+        cpt=0
+        page_victoire()   
 
 
 x0= 600
@@ -102,7 +103,6 @@ y= 100
 x1= 850
 y1= 155
 def dessin_etape1():
-    
     ligne1_etape1= canvas.create_line(x0, y, x1, y)
     ligne2_etape1=canvas.create_line(x0, y, x0, y + 300)
     ligne3_etape1=canvas.create_line(x0-10, y, x0 + 100,y)
@@ -141,12 +141,13 @@ def dessin_etape7():
 
 def dessin_etape8(canvas):
     canvas.delete("all")
+    canvas= tk.Canvas(racine,width= 1000, height=800,bg='lavender')
+    canvas.grid()
     cercle=canvas.create_oval((800-75, 250-75),(800+75, 250+75), fill="black")
     cercle=canvas.create_oval((800-70, 250-70),(800+70, 250+70), fill="misty rose")
     yeux1=canvas.create_oval((770-15, 230-15),(770+15, 230+15), fill="black")
     yeux2=canvas.create_oval((830-15, 230-15),(830+15, 230+15), fill="black")
     bouche=canvas.create_line((770,280),(820,280), fill="black", width=4)
-    fin_demande_rejouer()
 
 def asterix (word) :
     word_l=list(word)
@@ -227,7 +228,6 @@ def premiere_page():
     clear_window()
     racine['bg'] = 'lavender'
     canvas=tk.Canvas(racine, width=1000, height=700,bg='lavender',bd=0)
-    
     canvas.grid()
     texte=tk.Label (racine, text="Bienvenue au Jeu du pendu!", font=("Rockwell extra bold", '40'), fg="dark slate blue")
     texte.place(x=325, y=100)
