@@ -439,11 +439,11 @@ def troisieme_fenetre ():
     global text_indication
     global ecriture
     apparition_page_trois+=1
-    text_indication=tk.Label(racine, text='')
+    text_indication=tk.Label(racine, text='',fg='white',bg='mediumorchid1')
     text_indication.grid()
-    bouton_score=tk.Button(racine, text='score', command=page_score)
+    bouton_score=tk.Button(racine, text='score', command=page_score,fg='white',bg='mediumorchid1',bd=2)
     bouton_score.grid()
-    bouton_indication=tk.Button(text='indication ?', command=affichage_indication)
+    bouton_indication=tk.Button(text='indication ?', command=affichage_indication,fg='white',bg='mediumorchid1',bd=2)
     bouton_indication.grid()
     racine['bg'] = 'lavender'
     global canvas
@@ -531,15 +531,15 @@ def page_victoire():
     clear_window()
     racine['bg'] = 'lavender'
     encadrerboutons=tk.Frame(racine, bg='lavender', bd=4, relief='solid')
-    encadrerboutons.place(x=550, y=300, width='200', height='300')
-    labelgagne=tk.Label(racine, text='Vous avez gagné!\n Souhaitez vous rejouer?', font=('showcard gothic','35'))
-    labeltext=tk.Label(racine, text="Comme les sages le disent, une victoire est bien, deux ou plus encore meilleure;)", font=('french script mt', '30'))
+    encadrerboutons.place(x=700, y=300, width='200', height='300')
+    labelgagne=tk.Label(racine, text='Vous avez gagné!\n Souhaitez vous rejouer?', font=('showcard gothic','35'),fg="dark orchid4")
+    labeltext=tk.Label(racine, text="Comme les sages le disent, une victoire est bien, deux ou plus encore meilleure;)", font=('french script mt', '30'),fg='dark orchid3')
     labeltext.place(x=350, y=215)
-    bouton_oui=tk.Button(racine,text='oui', font=('showcard gothic','30'), command=deuxieme_page_choix)
-    bouton_non=tk.Button(racine,text='non', font=('showcard gothic','30'), command=dernier_page_du_jeu)
-    labelgagne.place(x=150,y=100)
-    bouton_oui.place(x=600,y=350)
-    bouton_non.place(x=600,y=450)
+    bouton_oui=tk.Button(racine,text='oui', font=('showcard gothic','30'), command=deuxieme_page_choix,fg='orchid4',bg='lavender',bd=2)
+    bouton_non=tk.Button(racine,text='non', font=('showcard gothic','30'), command=dernier_page_du_jeu,fg='orchid4',bg='lavender',bd=2)
+    labelgagne.place(x=480,y=100)
+    bouton_oui.place(x=745,y=325)
+    bouton_non.place(x=743,y=450)
 
 def fin_demande_rejouer():
     clear_window()
