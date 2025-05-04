@@ -1,25 +1,256 @@
 import tkinter as tk
 from functools import partial
 import random as rd
+import itertools
 
 racine= tk.Tk()
 racine.title("jeu du pendu")
 racine.geometry("800x800")
 
-Listemots= {"3": ["coq", "ski", "jus", "nul","gaz", "axe", "rat", "feu", "mur", "sel", "bot", "tas", "lot", "jeu", "lac", "bol", "nid", "par", "riz", "mot", "vue", "but", "ton", "fin", "mer", "air", "sol", "don", "bar", "vue", "pis", "roc", "vie", "fer", "cap", "ron"],
-            "4": ["beau", "joli", "thym", "yogi", "pion", "chat", "loup", "noir", "vert", "bleu", "port", "tour", "mont", "lait", "pain", "robe", "bain", "vent", "camp", "sole", "gris", "bois", "ciel", "dent", "faux", "rose", "pont", "doux", "cord", "film", "main", "pois", "vide", "clou", "fort"],
-            "5" : ["bruit", "cycle", "livre", "pomme", "tenue", "rugby", "table", "plage", "valse", "ferme", "ombre", "sable", "chute", "glace", "fleur", "porte", "verre", "moulin", "colis", "grille", "dalle", "piano", "tronc", "danse", "carte", "farce", "goule", "louve", "plain", "coeur", "train", "flute", "morce", "signe", "tigre", "phase"],
-            "6" : ["agneau", "alarme", "ananas", "arcade", "billet", "garage", "oiseau", "pierre", "valise", "tunnel", "fusain", "marais", "chemin", "barque", "forger", "cloche", "rapide", "soleil", "frambo", "gouter", "danser", "ranger", "fossil", "plante", "crayon", "bourse", "lamper", "bassin", "piston", "moulin", "courir", "lancer", "tordre", "filmer", "bercer", "manger", "chalet"],
-            "7" : ["puzzle", "abriter", "billard", "chariot", "crapaud", "fourmis", "iceberg", "valence", "clocher", "brasier", "lantern", "tranche", "pendule", "grenade", "cheveux", "voltage", "moteurs", "fenetre", "gourdin", "drapier", "saboter", "mystère", "plafond", "rempart", "baroque", "cascade", "lumiere", "bousier", "tresser", "marguer", "torrent", "siffler", "gravure", "palabre", "montage", "somnole", "travaux"], 
-            "8" : ["javelot", "losange", "spirale", "aquarium", "brocante", "diapason","objectif", "logiciel", "pastiche", "scorpion", "tabouret", "triangle", "utopique", "cascade", "boussole", "tornades", "panthère", "mystique", "tournage", "lumières", "fracture", "barbecue", "grenoble", "volcanes", "clarté", "chaleurs", "bourgeon", "printemps", "moulinet", "sauvages", "parfume", "fenêtres", "riviere", "mosaïque", "frissons", "tonnerre", "brouhaha", "marathon", "symphony", "cloporte", "moissons", "cascadeur", "periscope"]
-}
+#Listemots= {"3": ["coq", "ski", "jus", "nul","gaz", "axe", "rat", "feu", "mur", "sel", "bot", "tas", "lot", "jeu", "lac", "bol", "nid", "par", "riz", "mot", "vue", "but", "ton", "fin", "mer", "air", "sol", "don", "bar", "vue", "pis", "roc", "vie", "fer", "cap", "ron"],
+            #"4": ["beau", "joli", "thym", "yogi", "pion", "chat", "loup", "noir", "vert", "bleu", "port", "tour", "mont", "lait", "pain", "robe", "bain", "vent", "camp", "sole", "gris", "bois", "ciel", "dent", "faux", "rose", "pont", "doux", "cord", "film", "main", "pois", "vide", "clou", "fort"],
+            #"5" : ["bruit", "cycle", "livre", "pomme", "tenue", "rugby", "table", "plage", "valse", "ferme", "ombre", "sable", "chute", "glace", "fleur", "porte", "verre", "moulin", "colis", "grille", "dalle", "piano", "tronc", "danse", "carte", "farce", "goule", "louve", "plain", "coeur", "train", "flute", "morce", "signe", "tigre", "phase"],
+            #"6" : ["agneau", "alarme", "ananas", "arcade", "billet", "garage", "oiseau", "pierre", "valise", "tunnel", "fusain", "marais", "chemin", "barque", "forger", "cloche", "rapide", "soleil", "frambo", "gouter", "danser", "ranger", "fossil", "plante", "crayon", "bourse", "lamper", "bassin", "piston", "moulin", "courir", "lancer", "tordre", "filmer", "bercer", "manger", "chalet"],
+            #"7" : ["puzzle", "abriter", "billard", "chariot", "crapaud", "fourmis", "iceberg", "valence", "clocher", "brasier", "lantern", "tranche", "pendule", "grenade", "cheveux", "voltage", "moteurs", "fenetre", "gourdin", "drapier", "saboter", "mystère", "plafond", "rempart", "baroque", "cascade", "lumiere", "bousier", "tresser", "marguer", "torrent", "siffler", "gravure", "palabre", "montage", "somnole", "travaux"], 
+            #"8" : ["javelot", "losange", "spirale", "aquarium", "brocante", "diapason","objectif", "logiciel", "pastiche", "scorpion", "tabouret", "triangle", "utopique", "cascade", "boussole", "tornades", "panthère", "mystique", "tournage", "lumières", "fracture", "barbecue", "grenoble", "volcanes", "clarté", "chaleurs", "bourgeon", "printemps", "moulinet", "sauvages", "parfume", "fenêtres", "riviere", "mosaïque", "frissons", "tonnerre", "brouhaha", "marathon", "symphony", "cloporte", "moissons", "cascadeur", "periscope"]
+#}
 
+Listemots= {"3":
+    {"coq": "Chante au lever du jour",
+    "ski": "Glisse sur la neige",
+    "jus": "Boisson de fruit",
+    "nul": "Sans valeur",
+    "gaz": "État de la matière",
+    "axe": "Ligne de rotation",
+    "rat": "Rongeur urbain",
+    "feu": "Produit de la combustion",
+    "mur": "Séparation verticale",
+    "sel": "Assaisonne les plats",
+    "bot": "Automate informatique",
+    "tas": "Petit amas",
+    "lot": "Gagné à une tombola",
+    "jeu": "Activité ludique",
+    "lac": "Étendue d’eau douce",
+    "bol": "Contenant pour soupe",
+    "nid": "Maison d’oiseau",
+    "par": "Préposition de passage",
+    "riz": "Céréale asiatique",
+    "mot": "Unité de langage",
+    "vue": "Sens des yeux",
+    "but": "Objectif atteint",
+    "ton": "Variation de voix",
+    "fin": "Opposé de début",
+    "mer": "Grande étendue salée",
+    "air": "Mélange de gaz",
+    "sol": "Surface de la Terre",
+    "don": "Cadeau désintéressé",
+    "bar": "Lieu pour boire",
+    "pis": "Pire ou mamelle",
+    "roc": "Gros rocher",
+    "vie": "Opposé de mort",
+    "fer": "Métal magnétique",
+    "cap": "Direction à suivre",
+    "ron": "Début de “ronron”"},
+    "4": 
+    {"beau": "Agréable à regarder",
+    "joli": "Charmant ou mignon",
+    "thym": "Plante aromatique",
+    "yogi": "Pratique le yoga",
+    "pion": "Pièce d’échec",
+    "chat": "Félin domestique",
+    "loup": "Prédateur en meute",
+    "noir": "Absence de couleur",
+    "vert": "Couleur de l’herbe",
+    "bleu": "Couleur du ciel",
+    "port": "Où accostent les bateaux",
+    "tour": "Édifice ou rotation",
+    "mont": "Hauteur naturelle",
+    "lait": "Boisson blanche",
+    "pain": "Fait avec de la farine",
+    "robe": "Vêtement féminin",
+    "bain": "Prendre dans une baignoire",
+    "vent": "Air en mouvement",
+    "camp": "Lieu temporaire de repos",
+    "sole": "Poisson plat",
+    "gris": "Couleur nuageuse",
+    "bois": "Matériau des arbres",
+    "ciel": "Au-dessus de nos têtes",
+    "dent": "Dans la bouche",
+    "faux": "Pas vrai",
+    "rose": "Fleur ou couleur",
+    "pont": "Permet de traverser",
+    "doux": "Agréable au toucher",
+    "cord": "Synonyme de corde",
+    "film": "Projeté au cinéma",
+    "main": "Au bout du bras",
+    "pois": "Légume rond",
+    "vide": "Sans contenu",
+    "clou": "Fixe dans le bois",
+    "fort": "Plein de force"},
+    "5" : 
+    {"bruit": "Son fort ou désagréable",
+    "cycle": "Suite qui recommence",
+    "livre": "À lire",
+    "pomme": "Fruit défendu",
+    "tenue": "Vêtement complet",
+    "rugby": "Sport avec un ballon ovale",
+    "table": "Meuble de repas",
+    "plage": "Sable au bord de mer",
+    "valse": "Danse à trois temps",
+    "ferme": "Exploit. agricole",
+    "ombre": "Zone sans lumière",
+    "sable": "Grains sur la plage",
+    "chute": "Perte d’équilibre",
+    "glace": "Eau gelée ou dessert",
+    "fleur": "Plante colorée",
+    "porte": "S’ouvre et se ferme",
+    "verre": "Matériau transparent",
+    "moulin": "Tour qui broie",
+    "colis": "Objet à livrer",
+    "grille": "Treillis métallique",
+    "dalle": "Plaque de sol",
+    "piano": "Instrument à touches",
+    "tronc": "Partie centrale de l’arbre",
+    "danse": "Mouvement rythmé",
+    "carte": "Représentation géographique",
+    "farce": "Blague ou garniture",
+    "goule": "Créature monstrueuse",
+    "louve": "Femelle du loup",
+    "plain": "Synonyme de plaine",
+    "coeur": "Organe ou amour",
+    "train": "Moyen de transport ferré",
+    "flute": "Instrument à vent",
+    "morce": "Petit bout",
+    "signe": "Geste ou symbole",
+    "tigre": "Félin rayé",
+    "phase": "Étape d’un cycle"},
+    "6" : 
+    {"agneau": "Petit mouton",
+    "alarme": "Alerte sonore",
+    "ananas": "Fruit tropical",
+    "arcade": "Voûte ou salle de jeux",
+    "billet": "Pour voyager ou entrer",
+    "garage": "Abri pour voiture",
+    "oiseau": "Animal volant",
+    "pierre": "Morceau de roche",
+    "valise": "Contenant de voyage",
+    "tunnel": "Galerie souterraine",
+    "fusain": "Crayon d’artiste",
+    "marais": "Zone marécageuse",
+    "chemin": "Sentier ou route",
+    "barque": "Petit bateau",
+    "forger": "Travailler le métal",
+    "cloche": "Fait “ding dong”",
+    "rapide": "Très vite",
+    "soleil": "Astro qui éclaire",
+    "frambo": "Début de fruit rouge",
+    "gouter": "Manger un peu",
+    "danser": "Bouger en rythme",
+    "ranger": "Mettre en ordre",
+    "fossil": "Trace d’être vivant ancien",
+    "plante": "Organisme vert",
+    "crayon": "Pour écrire ou dessiner",
+    "bourse": "Marché financier",
+    "lamper": "Boire d’un trait",
+    "bassin": "Petit plan d’eau",
+    "piston": "Pièce de moteur",
+    "moulin": "Broie ou tourne au vent",
+    "courir": "Aller vite à pied",
+    "lancer": "Projeter avec force",
+    "tordre": "Déformer en tournant",
+    "filmer": "Enregistrer en vidéo",
+    "bercer": "Calmer un bébé",
+    "manger": "Nourrir son ventre",
+    "chalet": "Maison de montagne"},
+    "7" : 
+    {"puzzle": "Jeu d’assemblage",
+    "abriter": "Mettre à l’abri",
+    "billard": "Jeu de boules",
+    "chariot": "Pour transporter des charges",
+    "crapaud": "Amphibien verruqueux",
+    "fourmis": "Petits insectes en colonie",
+    "iceberg": "Grosse glace flottante",
+    "valence": "Ville ou chimie",
+    "clocher": "Tour d’église",
+    "brasier": "Feu intense",
+    "lantern": "Éclaire la nuit",
+    "tranche": "Morceau coupé fin",
+    "pendule": "Horloge murale",
+    "grenade": "Fruit ou explosif",
+    "cheveux": "Sur la tête",
+    "voltage": "Tension électrique",
+    "moteurs": "Font avancer machines",
+    "fenetre": "Ouverture dans un mur",
+    "gourdin": "Bâton épais",
+    "drapier": "Vendeur de tissus",
+    "saboter": "Détruire discrètement",
+    "mystère": "Chose inconnue",
+    "plafond": "Haut d’une pièce",
+    "rempart": "Mur de défense",
+    "baroque": "Style artistique chargé",
+    "cascade": "Chute d’eau",
+    "lumiere": "Éclaire l’obscurité",
+    "bousier": "Insecte rouleur de bouse",
+    "tresser": "Faire des tresses",
+    "marguer": "Début de fleur blanche",
+    "torrent": "Rivière rapide",
+    "siffler": "Faire un son aigu",
+    "gravure": "Image gravée",
+    "palabre": "Longue discussion",
+    "montage": "Assemblage d’éléments",
+    "somnole": "Dort à moitié",
+    "travaux": "Chantiers ou devoirs"}, 
+    "8" : 
+    {"javelot": "Lancé aux Jeux Olympiques",
+    "losange": "Figure géométrique",
+    "spirale": "Forme tournante",
+    "aquarium": "Maison à poissons",
+    "brocante": "Marché d’objets anciens",
+    "diapason": "Donne la note LA",
+    "objectif": "But à atteindre",
+    "logiciel": "Programme informatique",
+    "pastiche": "Imitation artistique",
+    "scorpion": "Animal à pinces et dard",
+    "tabouret": "Siège sans dossier",
+    "triangle": "Trois côtés",
+    "utopique": "Idéal irréaliste",
+    "cascade": "Chute d’eau (encore !)",
+    "boussole": "Indique le nord",
+    "tornades": "Violente tempête tournante",
+    "panthère": "Félin tacheté ou noir",
+    "mystique": "Spirituel ou mystérieux",
+    "tournage": "Réalisation de film",
+    "lumières": "Ce qui éclaire",
+    "fracture": "Os cassé",
+    "barbecue": "Cuisine au charbon",
+    "grenoble": "Ville des Alpes",
+    "volcanes": "Montagnes explosives",
+    "clarté": "Lumière ou compréhension",
+    "chaleurs": "Temps très chaud",
+    "bourgeon": "Futur feuille ou fleur",
+    "printemps": "Saison après l’hiver",
+    "moulinet": "Pour remonter la ligne",
+    "sauvages": "Pas domestiqués",
+    "parfume": "Donne une bonne odeur",
+    "fenêtres": "Ouvertures vitrées",
+    "riviere": "Cours d’eau doux",
+    "mosaïque": "Image en petits morceaux",
+    "frissons": "Sensation de froid ou peur",
+    "tonnerre": "Suit l’éclair",
+    "brouhaha": "Grand bruit confus",
+    "marathon": "Course de 42 km",
+    "symphony": "Grande œuvre musicale",
+    "cloporte": "Petit insecte gris",
+    "moissons": "Récolte des céréales",
+    "cascadeur": "Double pour scènes risquées",
+    "periscope": "Voir sans être vu"}
+}
 cpt = 0
-global scrore
-score=0
+ecriture_score=' '
 global lettre_deja_dite
 lettre_deja_dite=[]
-
+global numero_partie
+numero_partie=0
 print(lettre_deja_dite)
 
 def show_selection(choices, listbox):
@@ -29,11 +260,18 @@ def show_selection(choices, listbox):
         return
     taille = listbox.get(selection[0])
     global mot
-    mot = rd.choice(Listemots[taille])
+    global indication
+    print(taille)
+    variable = Listemots[str(taille)]
+    items=[(sk, v) for sk, v in variable.items()]
+    random_item = rd.choice(items)
+    mot=random_item[0]
+    indication=random_item[1]
     mot=str(mot)
     global text
     text=len(mot)
     print(mot)
+    print(indication)
     troisieme_fenetre()
     return text
 
@@ -59,6 +297,8 @@ def apparition_lettre(event):
     c=0
     lettre=str(event.char)
     print(lettre)
+    global ecriture_score
+    global numero_partie
     global cpt
     global lettre_deja_dite
     print(lettre_deja_dite)
@@ -90,9 +330,11 @@ def apparition_lettre(event):
             dessin_etape8()
         elif cpt>= 8:
             fin_demande_rejouer()
+            numero_partie+=1
     if affichage == list(mot):
-        global score
-        score+=1
+        numero_partie+=1
+        score=cpt
+        ecriture_score=str(ecriture_score)+'\n'+'score de la parite numero '+str(numero_partie)+' : '+str(score)
         lettre_deja_dite=[]
         cpt=0
         page_victoire()   
@@ -173,13 +415,29 @@ def page_aide() :
     titre.place(x=200, y=100)
     bouton_retour=tk.Button(text='retour', command=troisieme_fenetre,bg='lavender',fg='darkorchid4',bd=4)
     bouton_retour.place(x=650, y=500)
-    
+
+def page_score() :
+    clear_window()
+    global ecriture_score
+    ecriture_score_bouton=tk.Label(racine,text=str(ecriture_score))
+    ecriture_score_bouton.grid()  
+    bouton_retour_page_trois=tk.Button(racine, text='retour',command=troisieme_fenetre)  
+    bouton_retour_page_trois.grid()
+
+def affichage_indication():
+    global indication
+    text_indication.config(text=str(indication))
 
 def troisieme_fenetre ():
     clear_window()
+    global text_indication
+    text_indication=tk.Label(racine, text='')
+    text_indication.grid()
+    bouton_score=tk.Button(racine, text='score', command=page_score)
+    bouton_score.grid()
+    bouton_indication=tk.Button(text='indication ?', command=affichage_indication)
+    bouton_indication.grid()
     racine['bg'] = 'lavender'
-    resultat=tk.Label(text='score : '+str(score))
-    resultat.place(x=745,y=745)
     global canvas
     canvas= tk.Canvas(racine,width= 1000, height=800,bg='lavender')
     canvas.grid()
