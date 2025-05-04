@@ -404,6 +404,7 @@ def asterix (word) :
     word_l=list(word)
     nombre_asterix=len(word_l)
     global affichage
+    global ecriture
     affichage = [' *  '] * len(word)
     ecriture=' '.join(affichage)
     texte.config(text=str(ecriture), fg='black', font=30)
@@ -514,6 +515,9 @@ def deuxieme_page_choix():
     
 def premiere_page():
     clear_window()
+    apparition_page_trois=0
+    cpt=0
+    lettre_deja_dite=[]
     racine['bg'] = 'lavender'
     canvas=tk.Canvas(racine, width=1000, height=700,bg='lavender',bd=0)
     canvas.grid()
